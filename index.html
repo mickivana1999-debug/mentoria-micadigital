@@ -221,16 +221,19 @@ var CONFIG = {
 
 var MODULOS = [
   {t:'Bienvenida y mentalidad', clases:[
-    {t:'Propósito y metas para emprender', d:'La bienvenida a la mentoría, cómo verla y aprovecharla, y tus metas: a dónde vas, para cuándo y por qué. Tené a mano el PDF de metas.', video:'https://www.loom.com/share/0c9cd88a430a4bf79166a872ab8bb67f', min:17, material:[{t:'Tus metas y tu plan de acción (PDF)', link:'recursos/metas.pdf'}]},
-    {t:'Rutina, hábitos y tiempo efectivo para vender', d:'Tu rutina y tus hábitos, desde dónde hacer este negocio y el paso a paso completo de lo que vas a construir.', video:'https://www.loom.com/share/0c54a34208304686a1139671081f5107', min:10, material:[{t:'Tu rutina y tus hábitos (PDF)', link:'recursos/rutina.pdf'}]}
+    {t:'Propósito y metas para emprender', d:'La bienvenida a la mentoría, cómo verla y aprovecharla, y tus metas: a dónde vas, para cuándo y por qué. Tené a mano el PDF de metas.', id:'m1c1', video:'https://www.loom.com/share/0c9cd88a430a4bf79166a872ab8bb67f', min:17, material:[{t:'Tus metas y tu plan de acción (PDF)', link:'recursos/metas.pdf'}]},
+    {t:'Rutina, hábitos y tiempo efectivo para vender', d:'Tu rutina y tus hábitos, desde dónde hacer este negocio y el paso a paso completo de lo que vas a construir.', id:'m1c2', video:'https://www.loom.com/share/0c54a34208304686a1139671081f5107', min:10, material:[{t:'Tu rutina y tus hábitos (PDF)', link:'recursos/rutina.pdf'}]}
   ]},
   {t:'Buscar el producto ganador y modelarlo', clases:[
-    {t:'Cómo encontrar una oferta ganadora', d:'Qué hace que una oferta venda y cómo reconocerla antes de invertir.', video:'https://www.loom.com/share/103583405302438e8d1ab45c9dd89df8', min:12, material:[{t:'Guía: tu producto ganador (PDF)', link:'recursos/producto-ganador.pdf'}]},
-    {t:'Cómo encontrar productos ganadores en Facebook Ads', d:'Paso a paso para buscar en Facebook los productos que ya se están vendiendo.', video:'https://www.loom.com/share/a50b6278ea7a48ef8478438584d509af', min:27, material:[{t:'Guía: tu producto ganador, con las palabras clave (PDF)', link:'recursos/producto-ganador.pdf'}]},
-    {t:'Dónde vender y a qué precio', d:'Por qué validar primero en Argentina, cuándo y cómo salir afuera (Whop, LLC y Stripe) y qué precio ponerle para validar.', video:'https://www.loom.com/share/efbd975148944f7ab0f1cd6c7c83950f', min:8, material:[{t:'Guía: tu producto ganador · dónde lanzarlo (PDF)', link:'recursos/producto-ganador.pdf'}]}
+    {t:'Cómo encontrar una oferta ganadora', d:'Qué hace que una oferta venda y cómo reconocerla antes de invertir.', id:'m2c1', video:'https://www.loom.com/share/103583405302438e8d1ab45c9dd89df8', min:12, material:[{t:'Guía: tu producto ganador (PDF)', link:'recursos/producto-ganador.pdf'}]},
+    {t:'Cómo encontrar productos ganadores en Facebook Ads', d:'Paso a paso para buscar en Facebook los productos que ya se están vendiendo.', id:'m2c2', video:'https://www.loom.com/share/a50b6278ea7a48ef8478438584d509af', min:27, material:[{t:'Guía: tu producto ganador, con las palabras clave (PDF)', link:'recursos/producto-ganador.pdf'}]},
+    {t:'Dónde vender y a qué precio', d:'Por qué validar primero en Argentina, cuándo y cómo salir afuera (Whop, LLC y Stripe) y qué precio ponerle para validar.', id:'m2c3', video:'https://www.loom.com/share/efbd975148944f7ab0f1cd6c7c83950f', min:8, material:[{t:'Guía: tu producto ganador · dónde lanzarlo (PDF)', link:'recursos/producto-ganador.pdf'}]}
+  ]},
+  {t:'Creá tu producto', clases:[
+    {id:'prod-a', t:'Cómo modelar una oferta digital ganadora', d:'Con un producto real: la captura de su landing, el análisis con Claude y cómo leer con criterio propio por qué esa landing vende.', video:'https://www.loom.com/share/8dead6f774934b2bb26d1198ebb9bd5a', min:19, material:[{t:'Guía: la landing que vende (PDF)', link:'recursos/landing.pdf'}]}
   ]},
   {t:'Tu tienda en Winnerfy', clases:[
-    {t:'Cómo crear tu tienda en Winnerfy', d:'Tu cuenta, tu producto con su precio, Mercado Pago en modo negocio, el checkout, el píxel y cómo cobrar afuera. Tené el checklist abierto al lado.', video:'https://www.loom.com/share/e21dc3003bec4368982223536025ab11', min:13, material:[{t:'Checklist: tu tienda en Winnerfy (PDF)', link:'recursos/winnerfy.pdf'}]}
+    {t:'Cómo crear tu tienda en Winnerfy', d:'Tu cuenta, tu producto con su precio, Mercado Pago en modo negocio, el checkout, el píxel y cómo cobrar afuera. Tené el checklist abierto al lado.', id:'m3c1', video:'https://www.loom.com/share/e21dc3003bec4368982223536025ab11', min:13, material:[{t:'Checklist: tu tienda en Winnerfy (PDF)', link:'recursos/winnerfy.pdf'}]}
   ]},
   {t:'Facebook e Instagram', clases:[
     {t:'Configurar Facebook e Instagram', d:'Cuentas, página y todo lo que necesitás dejar listo antes de anunciar.', video:''}
@@ -257,7 +260,8 @@ var RECURSOS = [
   {tipo:'PDF · Módulo 1', t:'Tus metas y tu plan de acción', d:'Tu destino, tu plan paso a paso, tu porqué y el diario de avances.', link:'recursos/metas.pdf'},
   {tipo:'PDF · Módulo 1', t:'Tu rutina y tus hábitos', d:'Tus bloques de trabajo, tu semana armada y tus hábitos de energía.', link:'recursos/rutina.pdf'},
   {tipo:'PDF · Módulo 2', t:'Tu producto ganador', d:'Qué tiene que tener, cómo filtrar la Biblioteca, palabras clave en 3 idiomas y tu ficha de candidatos.', link:'recursos/producto-ganador.pdf'},
-  {tipo:'PDF · Módulo 3', t:'Tu tienda en Winnerfy', d:'Checklist de cuenta, producto, Mercado Pago, checkout y píxel, con los precios para validar.', link:'recursos/winnerfy.pdf'}
+  {tipo:'PDF · Módulo 3', t:'La landing que vende', d:'La estructura bloque por bloque, los parámetros que reviso siempre, cómo analizar una landing con criterio propio y los 4 mensajes para Claude.', link:'recursos/landing.pdf'},
+  {tipo:'PDF · Módulo 4', t:'Tu tienda en Winnerfy', d:'Checklist de cuenta, producto, Mercado Pago, checkout y píxel, con los precios para validar.', link:'recursos/winnerfy.pdf'}
 ];
 
 /* ========================================================= */
@@ -270,7 +274,7 @@ var RECURSOS = [
 
   var state = load(); state.vistas = state.vistas || {};
   var todas = [];
-  MODULOS.forEach(function(m, mi){ m.n = mi + 1; m.clases.forEach(function(c, ci){ c.id = 'm' + m.n + 'c' + (ci + 1); c.n = m.n + '.' + (ci + 1); c.mod = m; todas.push(c); }); });
+  MODULOS.forEach(function(m, mi){ m.n = mi + 1; m.clases.forEach(function(c, ci){ c.id = c.id || ('m' + m.n + 'c' + (ci + 1)); c.n = m.n + '.' + (ci + 1); c.mod = m; todas.push(c); }); });
   var cur = null;
 
   function embed(url){
