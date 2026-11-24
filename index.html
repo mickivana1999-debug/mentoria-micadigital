@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentoría Mica Digital</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap">
+<style>
+:root{
+  --bg:#F8F6FC; --surface:#FFFFFF; --ink:#26222E; --muted:#6E6780; --line:#E9E4F2;
+  --lila:#6A55A6; --lila-ink:#57438F; --on-lila:#FFFFFF; --soft:#EFEAF9; --pastel:#C9BBEB; --ok:#3E7F62;
+  --serif:'Fraunces', Georgia, serif; --sans:'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; --r:16px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#16131C; --surface:#201C28; --ink:#F2EFF7; --muted:#B4ADC4; --line:#332D3F;
+  --lila:#C6B6EE; --lila-ink:#D8CCF5; --on-lila:#1B1624; --soft:#2A2435; --pastel:#8E7CC4; --ok:#7CC6A2; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#16131C; --surface:#201C28; --ink:#F2EFF7; --muted:#B4ADC4; --line:#332D3F;
+  --lila:#C6B6EE; --lila-ink:#D8CCF5; --on-lila:#1B1624; --soft:#2A2435; --pastel:#8E7CC4; --ok:#7CC6A2; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--lila-ink)}
+:focus-visible{outline:2px solid var(--lila);outline-offset:2px;border-radius:8px}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:16px}
+h1,h2{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;line-height:1.2;margin:0}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:12px 22px;background:var(--lila);color:var(--on-lila);font-weight:600;font-size:15px;text-decoration:none;transition:filter .15s}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--lila-ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.ghost:hover{background:var(--soft);filter:none}
+.btn.done{background:var(--soft);color:var(--ok)}
+
+/* Entrada con clave */
+.gate{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:16px;background:var(--bg)}
+.gate form{width:100%;max-width:380px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:36px 28px;display:grid;gap:14px;text-align:center}
+.gate .logo{font-family:var(--serif);font-size:30px}
+.gate p{margin:0;color:var(--muted);font-size:15px}
+.gate input{width:100%;padding:13px 16px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;text-align:center;letter-spacing:.06em}
+.gate input:focus{outline:none;border-color:var(--lila)}
+.err{color:#B4405A;font-size:14px;min-height:1.2em;margin:0}
+
+/* Cabecera */
+.top{background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;padding-block:16px}
+.brand{margin-right:auto;display:flex;align-items:baseline;gap:10px}
+.brand b{font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:-.01em}
+.brand small{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.prog{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{width:150px;max-width:38vw;height:6px;border-radius:9px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--pastel);border-radius:9px;transition:width .5s}
+.tabs-band{background:var(--surface);border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.tab{border:0;background:none;padding:13px 14px;font-size:14px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--lila)}
+
+/* Clases */
+main{padding-block:32px 64px}
+.hello{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:28px}
+.hello h1{font-size:clamp(28px,4vw,38px)}
+.hello h1 em{font-style:italic;color:var(--lila-ink)}
+.hello p{margin:6px 0 0;color:var(--muted)}
+.clases{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start}
+.player{aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--soft);border:1px solid var(--line)}
+.player iframe{width:100%;height:100%;border:0;display:block}
+.soon{height:100%;display:grid;place-items:center;text-align:center;padding:24px;color:var(--muted)}
+.soon b{display:block;font-family:var(--serif);font-weight:500;font-size:22px;color:var(--ink);margin-bottom:4px}
+.meta{padding:22px 2px 0}
+.meta h2{font-size:clamp(24px,3vw,30px);margin:6px 0 10px}
+.meta .desc{color:var(--muted);margin:0 0 20px;max-width:62ch}
+.dl{margin:0 0 22px;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.dl h3{margin:0 0 8px;font-size:14px;font-weight:600}
+.dl a{display:block;font-size:15px;padding:4px 0}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Temario */
+.temario{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;position:sticky;top:16px}
+.temario-h{padding:16px 18px;border-bottom:1px solid var(--line);font-weight:600;font-size:14px}
+.mod{border-bottom:1px solid var(--line)}
+.mod:last-child{border-bottom:0}
+.mod-h{width:100%;display:flex;align-items:center;gap:12px;padding:14px 18px;border:0;background:none;text-align:left}
+.mod-h:hover{background:var(--soft)}
+.mod-n{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--lila-ink);font-size:13px;font-weight:600}
+.mod.full .mod-n{background:var(--pastel);color:var(--on-lila)}
+.mod-t{flex:1;min-width:0;font-size:14px;font-weight:500;line-height:1.35}
+.mod-s{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.mod ul{list-style:none;margin:0;padding:0 10px 10px}
+.cl{width:100%;display:flex;align-items:center;gap:10px;padding:9px 10px 9px 48px;border:0;background:none;border-radius:10px;text-align:left;font-size:14px;color:var(--muted);position:relative}
+.cl:hover{background:var(--soft);color:var(--ink)}
+.cl[aria-current="true"]{background:var(--soft);color:var(--ink);font-weight:500}
+.cl::before{content:"";position:absolute;left:24px;width:12px;height:12px;border-radius:50%;border:1.5px solid var(--pastel)}
+.cl.vista::before{background:var(--pastel)}
+.cl .tag{margin-left:auto;flex:none;white-space:nowrap;font-size:11px;color:var(--muted)}
+
+/* Recursos y ayuda */
+.sec-h{max-width:620px;margin-bottom:28px}
+.sec-h h1{font-size:clamp(28px,4vw,36px);margin:6px 0 8px}
+.sec-h p{margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{display:flex;flex-direction:column;gap:6px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);text-decoration:none;color:inherit;transition:border-color .15s}
+.card:hover{border-color:var(--pastel)}
+.card .eyebrow{font-size:11px}
+.card b{font-weight:600}
+.card span{color:var(--muted);font-size:14px}
+.vacio{padding:28px;border:1px dashed var(--line);border-radius:var(--r);color:var(--muted);text-align:center}
+.help{display:grid;gap:16px;max-width:620px}
+.help .card{flex-direction:row;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:14px;z-index:30}
+
+@media (max-width:900px){
+  .clases{grid-template-columns:1fr}
+  .temario{position:static}
+}
+@media (max-width:520px){
+  main{padding-block:22px 48px}
+  .bar{width:90px}
+  .actions .btn{flex:1}
+}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate" hidden>
+  <form id="gate-form">
+    <div class="logo" id="gate-logo"></div>
+    <p>Escribí la clave que te llegó en el mail de compra.</p>
+    <input id="gate-input" autocomplete="off" aria-label="Clave de acceso" required>
+    <button class="btn" type="submit">Entrar</button>
+    <p class="err" id="gate-err" aria-live="polite"></p>
+  </form>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><b id="marca"></b><small>Mentoría</small></div>
+    <div class="prog" aria-live="polite">
+      <div class="bar" aria-hidden="true"><i id="prog-bar"></i></div>
+      <span id="prog-txt"></span>
+    </div>
+  </div>
+</header>
+<nav class="tabs-band" aria-label="Secciones">
+  <div class="wrap tabs" role="tablist">
+    <button class="tab" role="tab" data-view="clases" aria-selected="true">Clases</button>
+    <button class="tab" role="tab" data-view="recursos" aria-selected="false">Recursos</button>
+    <button class="tab" role="tab" data-view="ayuda" aria-selected="false">Ayuda</button>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="view" id="v-clases">
+    <div class="hello">
+      <div>
+        <h1 id="hello-t"></h1>
+        <p>Cada módulo termina con algo hecho. Avanzá a tu ritmo.</p>
+      </div>
+      <button class="btn ghost" id="resume" type="button">Seguir donde quedé</button>
+    </div>
+    <div class="clases">
+      <div>
+        <div class="player" id="player"></div>
+        <div class="meta">
+          <div class="eyebrow" id="l-eyebrow"></div>
+          <h2 id="l-title"></h2>
+          <p class="desc" id="l-desc"></p>
+          <div class="dl" id="l-dl" hidden><h3>Material de esta clase</h3><div id="l-dl-list"></div></div>
+          <div class="actions">
+            <button class="btn" id="mark" type="button">Marcar como vista</button>
+            <button class="btn ghost" id="next" type="button">Siguiente clase →</button>
+          </div>
+        </div>
+      </div>
+      <aside class="temario" aria-label="Temario">
+        <div class="temario-h">Temario</div>
+        <div id="temario"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="view" id="v-recursos" hidden>
+    <div class="sec-h">
+      <div class="eyebrow">Tus herramientas</div>
+      <h1>Recursos</h1>
+      <p>Plantillas, planillas y links que usamos en las clases.</p>
+    </div>
+    <div class="grid" id="rec-grid"></div>
+  </section>
+
+  <section class="view" id="v-ayuda" hidden>
+    <div class="sec-h">
+      <div class="eyebrow">Estoy acá</div>
+      <h1>Ayuda</h1>
+      <p>Si algo no carga o te trabaste en una clase, escribime.</p>
+    </div>
+    <div class="help" id="help"></div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+/* =========================================================
+   CONFIGURACIÓN · lo único que hay que tocar
+   - video: link de Loom (o YouTube / Vimeo / Drive). Vacío = «se está grabando».
+   - material: [{t:'Nombre', link:'https://...'}] descargables de la clase.
+   ========================================================= */
+var CONFIG = {
+  MARCA: 'Mica Digital',
+  CLAVE: 'MICA2026',      // vacío = sin clave
+  SOPORTE_WHATSAPP: '5491123217710',   // formato internacional, sin + ni espacios
+  SOPORTE_MAIL: ''
+};
+
+var MODULOS = [
+  {t:'Bienvenida y mentalidad', clases:[
+    {t:'Propósito y metas para emprender', d:'La bienvenida a la mentoría, cómo verla y aprovecharla, y tus metas: a dónde vas, para cuándo y por qué. Tené a mano el PDF de metas.', video:'https://www.loom.com/share/0c9cd88a430a4bf79166a872ab8bb67f', min:17, material:[{t:'Tus metas y tu plan de acción (PDF)', link:'recursos/metas.pdf'}]},
+    {t:'Rutina, hábitos y tiempo efectivo para vender', d:'Tu rutina y tus hábitos, desde dónde hacer este negocio y el paso a paso completo de lo que vas a construir.', video:'https://www.loom.com/share/0c54a34208304686a1139671081f5107', min:10, material:[{t:'Tu rutina y tus hábitos (PDF)', link:'recursos/rutina.pdf'}]}
+  ]},
+  {t:'Buscar el producto ganador y modelarlo', clases:[
+    {t:'Cómo encontrar una oferta ganadora', d:'Qué hace que una oferta venda y cómo reconocerla antes de invertir.', video:'https://www.loom.com/share/103583405302438e8d1ab45c9dd89df8', min:12, material:[{t:'Guía: tu producto ganador (PDF)', link:'recursos/producto-ganador.pdf'}]},
+    {t:'Cómo encontrar productos ganadores en Facebook Ads', d:'Paso a paso para buscar en Facebook los productos que ya se están vendiendo.', video:'https://www.loom.com/share/a50b6278ea7a48ef8478438584d509af', min:27, material:[{t:'Guía: tu producto ganador, con las palabras clave (PDF)', link:'recursos/producto-ganador.pdf'}]},
+    {t:'Dónde vender y a qué precio', d:'Por qué validar primero en Argentina, cuándo y cómo salir afuera (Whop, LLC y Stripe) y qué precio ponerle para validar.', video:'https://www.loom.com/share/efbd975148944f7ab0f1cd6c7c83950f', min:8, material:[{t:'Guía: tu producto ganador · dónde lanzarlo (PDF)', link:'recursos/producto-ganador.pdf'}]}
+  ]},
+  {t:'Tu tienda en Winnerfy', clases:[
+    {t:'Crear y configurar tu tienda en Winnerfy', d:'Tu tienda digital armada paso a paso, con todas sus configuraciones.', video:''}
+  ]},
+  {t:'Facebook e Instagram', clases:[
+    {t:'Configurar Facebook e Instagram', d:'Cuentas, página y todo lo que necesitás dejar listo antes de anunciar.', video:''}
+  ]},
+  {t:'Cómo crear anuncios', clases:[
+    {t:'Crear tus anuncios', d:'Cómo armar un anuncio desde cero y dejarlo listo para publicar.', video:''}
+  ]},
+  {t:'Campañas de testeo', clases:[
+    {t:'Armar tu campaña de testeo', d:'Cómo testear para encontrar qué anuncio vende.', video:''}
+  ]},
+  {t:'Campañas de escala', clases:[
+    {t:'Escalar lo que funciona', d:'Qué hacer cuando un anuncio vende, para vender más.', video:''}
+  ]},
+  {t:'Métricas', clases:[
+    {t:'Leer tus métricas', d:'Qué números mirar y qué decisión tomar con cada uno.', video:''}
+  ]},
+  {t:'Cómo usar la IA', clases:[
+    {t:'La IA en tu negocio', d:'Cómo usar la inteligencia artificial para ahorrar tiempo en cada paso.', video:''}
+  ]}
+];
+
+var RECURSOS = [
+  // {tipo:'Planilla', t:'Nombre del recurso', d:'Para qué sirve', link:'https://...'}
+  {tipo:'PDF · Módulo 1', t:'Tus metas y tu plan de acción', d:'Tu destino, tu plan paso a paso, tu porqué y el diario de avances.', link:'recursos/metas.pdf'},
+  {tipo:'PDF · Módulo 1', t:'Tu rutina y tus hábitos', d:'Tus bloques de trabajo, tu semana armada y tus hábitos de energía.', link:'recursos/rutina.pdf'},
+  {tipo:'PDF · Módulo 2', t:'Tu producto ganador', d:'Qué tiene que tener, cómo filtrar la Biblioteca, palabras clave en 3 idiomas y tu ficha de candidatos.', link:'recursos/producto-ganador.pdf'}
+];
+
+/* ========================================================= */
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = 'mentoria-mica-v1';
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+
+  var state = load(); state.vistas = state.vistas || {};
+  var todas = [];
+  MODULOS.forEach(function(m, mi){ m.n = mi + 1; m.clases.forEach(function(c, ci){ c.id = 'm' + m.n + 'c' + (ci + 1); c.n = m.n + '.' + (ci + 1); c.mod = m; todas.push(c); }); });
+  var cur = null;
+
+  function embed(url){
+    var m;
+    if ((m = url.match(/loom\.com\/(?:share|embed)\/([\w-]+)/))) return 'https://www.loom.com/embed/' + m[1] + '?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true';
+    if ((m = url.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/))) return 'https://www.youtube-nocookie.com/embed/' + m[1] + '?rel=0&modestbranding=1';
+    if ((m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/))) return 'https://player.vimeo.com/video/' + m[1];
+    if ((m = url.match(/drive\.google\.com\/file\/d\/([\w-]+)/))) return 'https://drive.google.com/file/d/' + m[1] + '/preview';
+    return url;
+  }
+  function toast(msg){ var t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(function(){ t.hidden = true; }, 2200); }
+
+  function progreso(){
+    var v = todas.filter(function(c){ return state.vistas[c.id]; }).length;
+    $('prog-bar').style.width = (todas.length ? v / todas.length * 100 : 0) + '%';
+    $('prog-txt').textContent = v + ' de ' + todas.length + ' clases';
+  }
+
+  function temario(){
+    $('temario').innerHTML = MODULOS.map(function(m){
+      var vistas = m.clases.filter(function(c){ return state.vistas[c.id]; }).length;
+      var full = vistas === m.clases.length;
+      var abierto = cur && cur.mod === m;
+      return '<div class="mod' + (full ? ' full' : '') + '"><button class="mod-h" type="button" data-mod="' + m.n + '" aria-expanded="' + abierto + '">' +
+        '<span class="mod-n">' + (full ? '✓' : m.n) + '</span><span class="mod-t">' + esc(m.t) + '</span>' +
+        '<span class="mod-s">' + vistas + '/' + m.clases.length + '</span></button>' +
+        '<ul' + (abierto ? '' : ' hidden') + '>' + m.clases.map(function(c){
+          return '<li><button class="cl' + (state.vistas[c.id] ? ' vista' : '') + '" type="button" data-id="' + c.id + '" aria-current="' + (c === cur) + '">' +
+            esc(c.t) + '<span class="tag">' + (c.video ? (c.min ? c.min + ' min' : '') : 'Pronto') + '</span>' + '</button></li>';
+        }).join('') + '</ul></div>';
+    }).join('');
+  }
+
+  function abrir(c, scroll){
+    cur = c; state.ultima = c.id; save();
+    $('player').innerHTML = c.video
+      ? '<iframe src="' + esc(embed(c.video)) + '" title="' + esc(c.t) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'
+      : '<div class="soon"><div><b>Esta clase se está grabando</b>Muy pronto la vas a ver acá.</div></div>';
+    $('l-eyebrow').textContent = 'Módulo ' + c.mod.n + ' · Clase ' + c.n;
+    $('l-title').textContent = c.t;
+    $('l-desc').textContent = c.d || '';
+    var mat = c.material || [];
+    $('l-dl').hidden = !mat.length;
+    $('l-dl-list').innerHTML = mat.map(function(x){ return '<a href="' + esc(x.link) + '" target="_blank" rel="noopener">' + esc(x.t) + ' ↗</a>'; }).join('');
+    var vista = !!state.vistas[c.id];
+    $('mark').textContent = vista ? '✓ Vista' : 'Marcar como vista';
+    $('mark').classList.toggle('done', vista);
+    $('next').hidden = todas.indexOf(c) === todas.length - 1;
+    temario(); progreso();
+    if (scroll) $('player').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function siguientePendiente(){
+    for (var i = 0; i < todas.length; i++) if (!state.vistas[todas[i].id]) return todas[i];
+    return todas[todas.length - 1];
+  }
+
+  function recursos(){
+    $('rec-grid').innerHTML = RECURSOS.length ? RECURSOS.map(function(r){
+      return '<a class="card" href="' + esc(r.link) + '" target="_blank" rel="noopener"><span class="eyebrow">' + esc(r.tipo || 'Recurso') + '</span><b>' + esc(r.t) + '</b><span>' + esc(r.d || '') + '</span></a>';
+    }).join('') : '<div class="vacio">Acá van a aparecer los recursos a medida que avancen las clases.</div>';
+  }
+
+  function ayuda(){
+    var h = '';
+    if (CONFIG.SOPORTE_WHATSAPP) h += '<div class="card"><div><b>WhatsApp</b><br><span>La forma más rápida de escribirme.</span></div><a class="btn" href="https://wa.me/' + esc(CONFIG.SOPORTE_WHATSAPP) + '" target="_blank" rel="noopener">Escribirme</a></div>';
+    if (CONFIG.SOPORTE_MAIL) h += '<div class="card"><div><b>Mail</b><br><span>' + esc(CONFIG.SOPORTE_MAIL) + '</span></div><a class="btn ghost" href="mailto:' + esc(CONFIG.SOPORTE_MAIL) + '">Mandar mail</a></div>';
+    $('help').innerHTML = h || '<div class="vacio">Pronto vas a tener acá cómo escribirme.</div>';
+  }
+
+  function ver(v){
+    document.querySelectorAll('.tab').forEach(function(t){ t.setAttribute('aria-selected', t.dataset.view === v); });
+    document.querySelectorAll('.view').forEach(function(s){ s.hidden = s.id !== 'v-' + v; });
+  }
+
+  function iniciar(){
+    $('marca').textContent = CONFIG.MARCA;
+    $('hello-t').innerHTML = Object.keys(state.vistas).length ? 'Hola de <em>nuevo</em>' : 'Te doy la <em>bienvenida</em>';
+    recursos(); ayuda();
+    var ult = todas.filter(function(c){ return c.id === state.ultima; })[0];
+    abrir(ult || todas[0]);
+  }
+
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('button'); if (!t) return;
+    if (t.classList.contains('tab')) ver(t.dataset.view);
+    else if (t.classList.contains('mod-h')){ var ul = t.nextElementSibling; ul.hidden = !ul.hidden; t.setAttribute('aria-expanded', !ul.hidden); }
+    else if (t.classList.contains('cl')) abrir(todas.filter(function(c){ return c.id === t.dataset.id; })[0], true);
+    else if (t.id === 'mark'){
+      if (state.vistas[cur.id]) delete state.vistas[cur.id]; else { state.vistas[cur.id] = 1; toast('¡Clase vista!'); }
+      save(); abrir(cur);
+    }
+    else if (t.id === 'next') abrir(todas[todas.indexOf(cur) + 1], true);
+    else if (t.id === 'resume'){ ver('clases'); abrir(siguientePendiente(), true); }
+  });
+
+  $('gate-logo').textContent = CONFIG.MARCA;
+  if (CONFIG.CLAVE && state.clave !== CONFIG.CLAVE){
+    $('gate').hidden = false;
+    $('gate-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      if ($('gate-input').value.trim().toUpperCase() === CONFIG.CLAVE.toUpperCase()){ state.clave = CONFIG.CLAVE; save(); $('gate').hidden = true; }
+      else $('gate-err').textContent = 'Esa clave no es. Copiala tal cual del mail.';
+    });
+  }
+  iniciar();
+})();
+</script>
+</body>
+</html>
