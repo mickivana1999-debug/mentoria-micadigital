@@ -113,6 +113,16 @@ main{padding-block:32px 64px}
 .vacio{padding:28px;border:1px dashed var(--line);border-radius:var(--r);color:var(--muted);text-align:center}
 .help{display:grid;gap:16px;max-width:620px}
 .help .card{flex-direction:row;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.help .card.idea,.help .card.vip{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:10px}
+.help .card.idea:hover{border-color:var(--line)}
+.lbl{font-size:13px;font-weight:600;margin-top:4px}
+.idea select,.idea textarea{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
+.idea textarea{resize:vertical}
+.idea select:focus,.idea textarea:focus{outline:none;border-color:var(--lila)}
+.idea .btn{align-self:flex-start;margin-top:4px}
+.help .card.vip{background:var(--soft);border-color:var(--pastel)}
+.vip-t{font-family:var(--serif);font-weight:500!important;font-size:24px;line-height:1.2}
+.vip .actions{margin-top:6px}
 
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:14px;z-index:30}
 
@@ -199,7 +209,7 @@ main{padding-block:32px 64px}
     <div class="sec-h">
       <div class="eyebrow">Estoy acá</div>
       <h1>Ayuda</h1>
-      <p>Si algo no carga o te trabaste en una clase, escribime.</p>
+      <p>Si algo no carga, te trabaste en una clase o querés proponerme algo, escribime.</p>
     </div>
     <div class="help" id="help"></div>
   </section>
@@ -216,7 +226,8 @@ var CONFIG = {
   MARCA: 'Mica Digital',
   CLAVE: 'MICA2026',      // vacío = sin clave
   SOPORTE_WHATSAPP: '5491123217710',   // formato internacional, sin + ni espacios
-  SOPORTE_MAIL: ''
+  SOPORTE_MAIL: '',
+  CHECKOUT_1A1: 'https://landingmetodo7dias.winnerfy.app/checkout/mentoria-personalizada-1-1'   // vacío = no se muestra el bloque 1:1
 };
 
 var MODULOS = [
@@ -348,7 +359,28 @@ var RECURSOS = [
     var h = '';
     if (CONFIG.SOPORTE_WHATSAPP) h += '<div class="card"><div><b>WhatsApp</b><br><span>La forma más rápida de escribirme.</span></div><a class="btn" href="https://wa.me/' + esc(CONFIG.SOPORTE_WHATSAPP) + '" target="_blank" rel="noopener">Escribirme</a></div>';
     if (CONFIG.SOPORTE_MAIL) h += '<div class="card"><div><b>Mail</b><br><span>' + esc(CONFIG.SOPORTE_MAIL) + '</span></div><a class="btn ghost" href="mailto:' + esc(CONFIG.SOPORTE_MAIL) + '">Mandar mail</a></div>';
+    if (CONFIG.SOPORTE_WHATSAPP) h += '<form class="card idea" id="idea-form">' +
+      '<div><b>Ayudame a mejorar la mentoría</b><br><span>¿Algo que querés que explique mejor? ¿Una clase de un tema puntual? ¿Una recomendación? Contame y me llega directo a mi WhatsApp.</span></div>' +
+      '<label class="lbl" for="idea-tipo">¿Qué querés contarme?</label>' +
+      '<select id="idea-tipo"><option>Quiero que expliques mejor algo</option><option>Quiero una clase sobre un tema</option><option>Tengo una recomendación</option></select>' +
+      '<label class="lbl" for="idea-txt">Tu mensaje</label>' +
+      '<textarea id="idea-txt" rows="4" required placeholder="Ej.: en la clase 2.3 no entendí cómo filtrar por país…"></textarea>' +
+      '<button class="btn" type="submit">Enviar por WhatsApp</button></form>';
+    if (CONFIG.CHECKOUT_1A1) h += '<div class="card vip">' +
+      '<span class="eyebrow">Mentoría 1:1</span><b class="vip-t">Mentoría directa conmigo</b>' +
+      '<span>Trabajamos tu caso uno a uno: revisamos tu producto, tu oferta y tus números, y armamos juntas tu próximo paso.</span>' +
+      '<div class="actions"><a class="btn" href="' + esc(CONFIG.CHECKOUT_1A1) + '" target="_blank" rel="noopener">Quiero mi 1:1</a>' +
+      (CONFIG.SOPORTE_WHATSAPP ? '<a class="btn ghost" href="https://wa.me/' + esc(CONFIG.SOPORTE_WHATSAPP) + '?text=' + encodeURIComponent('Hola Mica! Estoy en la mentoría y me interesa la mentoría 1:1. Te cuento mi caso y quiero ver cómo puedo abonarla.') + '" target="_blank" rel="noopener">Hablar con vos primero</a>' : '') +
+      '</div></div>';
     $('help').innerHTML = h || '<div class="vacio">Pronto vas a tener acá cómo escribirme.</div>';
+    var f = $('idea-form');
+    if (f) f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var txt = $('idea-txt').value.trim(); if (!txt) return;
+      var msg = 'Hola Mica! Te escribo desde la mentoría.\n' + $('idea-tipo').value + ':\n' + txt;
+      window.open('https://wa.me/' + CONFIG.SOPORTE_WHATSAPP + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+      $('idea-txt').value = ''; toast('¡Gracias! Se abrió WhatsApp para enviarlo');
+    });
   }
 
   function ver(v){
