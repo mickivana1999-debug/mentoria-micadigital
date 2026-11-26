@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#241a30">
+<title>Calculadora de Ganancias | Método 7 Días</title>
+<style>
+:root{--ink:#241a30;--dark:#21172e;--muted:#756b7e;--paper:#fcfaff;--white:#fff;--soft:#eee6f7;--violet:#8b61b2;--violet2:#67418f;--line:#e9e1ef;--pink:#fbeaf2;--yellow:#fff5cf;--green:#eaf7ef;--red:#fff0ed}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 "DM Sans",Arial,sans-serif}button,input{font:inherit}h1,h2,h3{font-family:Manrope,Arial,sans-serif;line-height:1.15;letter-spacing:-.03em;margin:0}
+.wrap{width:min(1050px,calc(100% - 30px));margin:auto}
+header{background:radial-gradient(ellipse at 50% 0%,#5d4375,#241a30 70%);color:#fff;padding:38px 0 30px}
+.eyebrow{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#e3c9f5}
+header h1{font-size:clamp(30px,5vw,48px);margin:10px 0}header p{color:#dfd4e7;max-width:700px;margin:0}
+.top-note{margin-top:17px;padding:11px 13px;border:1px solid #ffffff30;background:#ffffff12;border-radius:12px;font-size:12px;color:#eee5f3}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;padding:18px 0;position:sticky;top:0;background:#fcfaffed;backdrop-filter:blur(10px);z-index:4;border-bottom:1px solid var(--line)}
+.tabs button{background:#eee7f5;color:#61417e;padding:11px 15px;border-radius:11px;font-weight:800;font-size:13px}
+.tabs button.active{background:var(--ink);color:#fff}
+main{padding:23px 0 60px}.panel{display:none}.panel.active{display:block}
+.section-head{margin-bottom:18px}.section-head h2{font-size:27px}.section-head p{color:var(--muted);margin:7px 0 0;font-size:13px}
+.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:17px;align-items:start}
+.card{background:white;border:1px solid var(--line);border-radius:17px;padding:19px;box-shadow:0 7px 24px #2b1c3a08}
+.card h3{font-size:17px;margin-bottom:14px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.field{min-width:0}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.field small{display:block;color:var(--muted);font-size:10px;line-height:1.4;margin-top:5px}
+.field input{width:100%;padding:11px 12px;border:1px solid #ded3e7;border-radius:10px;background:var(--yellow);color:var(--ink);outline:none}
+.field input:focus{border-color:var(--violet);box-shadow:0 0 0 3px #8b61b21c}
+.field input[readonly]{background:#f1edf4;color:#766a7e}
+.results{display:grid;gap:9px}.result{padding:12px 13px;border-radius:11px;background:var(--pink);display:flex;justify-content:space-between;gap:10px;align-items:center}.result span{font-size:12px;color:#55465f}.result strong{font-size:15px;text-align:right}.result.primary{background:#eee5f7;border:1px solid #dfd0ee}.result.primary strong{font-size:20px;color:#5d3780}
+.note{font-size:11px;color:var(--muted);margin-top:13px}.status{padding:13px;border-radius:11px;background:var(--green);font-size:13px;font-weight:800;margin-top:10px}.status.warn{background:var(--red);color:#8b352b}
+.footer-note{margin-top:20px;padding:14px;border-radius:12px;background:#f1edf5;color:#665a70;font-size:11px}
+.actions{display:flex;justify-content:flex-end;margin-top:13px}.actions button{background:#eee7f5;color:#634184;padding:9px 12px;font-size:12px}
+footer{background:var(--dark);color:#cfc1d9;text-align:center;padding:22px 15px;font-size:11px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.fields{grid-template-columns:1fr 1fr}}
+@media(max-width:430px){.fields{grid-template-columns:1fr}.tabs{gap:6px}.tabs button{flex:1;padding:10px 7px;font-size:11px}.result{align-items:flex-start}.result strong{max-width:50%}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">MÉTODO 7 DÍAS · HERRAMIENTA DE TRABAJO</div>
+<h1>Calculadora de ganancias</h1>
+<p>Ordená tus costos, calculá cuánto podés invertir en publicidad y convertí tu objetivo mensual en números diarios. Completá los campos amarillos: los resultados se actualizan automáticamente.</p>
+<div class="top-note">Todos los importes se calculan en pesos argentinos (ARS), excepto cuando se indica USD. Los porcentajes y ejemplos deben reemplazarse por los valores reales de tus cuentas.</div>
+</div></header>
+<div class="wrap">
+<nav class="tabs" aria-label="Secciones">
+<button class="active" data-tab="calc">1. Mi producto</button>
+<button data-tab="budget">2. Presupuesto de prueba</button>
+<button data-tab="goal">3. Mi meta mensual</button>
+</nav>
+<main>
+<section class="panel active" id="calc">
+<div class="section-head"><h2>Calculadora de tu producto</h2><p>Calculá cuánto te queda de cada venta después de comisiones, costos e impuestos.</p></div>
+<div class="layout">
+<div class="card"><h3>Tus datos</h3><div class="fields">
+<div class="field"><label for="price">Precio de tu producto (ARS)</label><input id="price" type="number" min="0" step="1" value="15000"><small>Precio final que paga tu cliente.</small></div>
+<div class="field"><label for="winnerfy">Comisión de Winnerfy (%)</label><input id="winnerfy" type="number" min="0" max="100" step=".1" value="4"><small>Ejemplo editable: 4%. Revisá tu plan actual.</small></div>
+<div class="field"><label for="mp">Comisión de Mercado Pago (%)</label><input id="mp" type="number" min="0" max="100" step=".1" value="6"><small>Ejemplo editable. Depende de cómo y cuándo recibas el dinero.</small></div>
+<div class="field"><label for="fixed">Costo fijo por venta (ARS)</label><input id="fixed" type="number" min="0" step="1" value="0"><small>Si existe un cargo fijo por transacción.</small></div>
+<div class="field"><label for="taxSale">Impuestos por venta (%)</label><input id="taxSale" type="number" min="0" max="100" step=".1" value="0"><small>Ej.: ingresos brutos. Confirmalo con tu contador.</small></div>
+<div class="field"><label for="conversion">Tasa de compra supuesta (%)</label><input id="conversion" type="number" min="0" max="100" step=".1" value="2"><small>Referencia inicial del Excel: 2%; para escalar, 2,5%.</small></div>
+<div class="field"><label for="dollar">Dólar del día (ARS por USD)</label><input id="dollar" type="number" min="0" step="1" value="1400"><small>Actualizá el valor que uses para tus cálculos.</small></div>
+</div><div class="actions"><button type="button" class="reset" data-reset="calc">Restablecer ejemplos</button></div></div>
+<div class="card"><h3>Tus números</h3><div class="results">
+<div class="result primary"><span>Lo que te queda de cada venta<br><small>Tu número de equilibrio publicitario</small></span><strong id="left">—</strong></div>
+<div class="result"><span>Costo medio por venta (precio ÷ 2)</span><strong id="mid">—</strong></div>
+<div class="result"><span>Costo máximo por visita</span><strong id="visitCost">—</strong></div>
+<div class="result"><span>Visitas necesarias por venta</span><strong id="visits">—</strong></div>
+<div class="result"><span>Ticket promedio objetivo (1,5 × precio)</span><strong id="ticket">—</strong></div>
+<div class="result"><span>Equilibrio con ventas extra</span><strong id="extraBreak">—</strong></div>
+<div class="result"><span>Tu equilibrio en dólares</span><strong id="usd">—</strong></div>
+</div><p class="note">El equilibrio por venta es el máximo que podrías pagar para conseguir una compra sin considerar otros costos no cargados aquí. No es una recomendación de gasto.</p></div>
+</div>
+</section>
+<section class="panel" id="budget">
+<div class="section-head"><h2>Presupuesto de prueba</h2><p>Estimá cuánto dinero necesitás separar para testear un producto y verificá el tope de inversión.</p></div>
+<div class="layout">
+<div class="card"><h3>Tus datos</h3><div class="fields">
+<div class="field"><label>Precio del producto (ARS)</label><input id="bPrice" readonly></div>
+<div class="field"><label for="days">Días de prueba</label><input id="days" type="number" min="1" step="1" value="3"><small>El Excel propone 3 días; si hubo alguna venta, esperar hasta el día 5.</small></div>
+<div class="field"><label for="warmDays">Días para calentar la cuenta</label><input id="warmDays" type="number" min="0" step="1" value="3"><small>Cuenta nueva: 2–3 días. Con historial, podés poner 0.</small></div>
+<div class="field"><label for="warmDaily">Presupuesto diario de calentamiento (ARS)</label><input id="warmDaily" type="number" min="0" step="1" value="3000"><small>Ejemplo editable basado en 1–3 USD diarios.</small></div>
+<div class="field"><label for="adTax">Impuestos sobre gasto en Meta (%)</label><input id="adTax" type="number" min="0" max="100" step=".1" value="0"><small>Ingresá el porcentaje que corresponda a tu medio de pago.</small></div>
+<div class="field"><label for="capUsd">Tope por producto (USD)</label><input id="capUsd" type="number" min="0" step="1" value="100"><small>Referencia del método incluida en tu Excel.</small></div>
+<div class="field"><label for="cash">Plata que separás para probar (ARS)</label><input id="cash" type="number" min="0" step="1" value="300000"><small>Separá este dinero antes de iniciar la prueba.</small></div>
+</div><div class="actions"><button type="button" class="reset" data-reset="budget">Restablecer ejemplos</button></div></div>
+<div class="card"><h3>Resultados de la prueba</h3><div class="results">
+<div class="result"><span>Presupuesto diario de campaña</span><strong id="dailyBudget">—</strong></div>
+<div class="result"><span>Costo de la prueba</span><strong id="testCost">—</strong></div>
+<div class="result"><span>Costo del calentamiento</span><strong id="warmCost">—</strong></div>
+<div class="result primary"><span>Total estimado con impuestos</span><strong id="totalCost">—</strong></div>
+<div class="result"><span>Tope por producto en pesos</span><strong id="capPesos">—</strong></div>
+<div class="result"><span>Productos que podés probar con tu plata</span><strong id="countProducts">—</strong></div>
+</div><div id="budgetStatus" class="status">—</div><p class="note">El cálculo replica la lógica del Excel: (prueba + calentamiento) × (1 + impuestos de Meta). El presupuesto diario de campaña equivale al precio del producto.</p></div>
+</div>
+</section>
+<section class="panel" id="goal">
+<div class="section-head"><h2>De tu meta mensual a ventas por día</h2><p>Convertí tu objetivo de ganancia en una referencia de ventas e inversión publicitaria. Es una cuenta de planificación, no una promesa.</p></div>
+<div class="layout">
+<div class="card"><h3>Tus datos</h3><div class="fields">
+<div class="field"><label for="monthlyGoal">Ganancia que querés por mes (ARS)</label><input id="monthlyGoal" type="number" min="0" step="1" value="1500000"></div>
+<div class="field"><label for="monthDays">Días del mes</label><input id="monthDays" type="number" min="1" step="1" value="30"></div>
+<div class="field"><label>Lo que te queda de cada venta (ARS)</label><input id="goalLeft" readonly></div>
+<div class="field"><label for="acqCost">Lo que te cuesta conseguir cada venta (ARS)</label><input id="acqCost" type="number" min="0" step="1" value="9000"><small>Reemplazá el ejemplo por el costo real observado en tus campañas.</small></div>
+</div><div class="actions"><button type="button" class="reset" data-reset="goal">Restablecer ejemplos</button></div></div>
+<div class="card"><h3>Tu planificación</h3><div class="results">
+<div class="result"><span>Ganancia por día</span><strong id="dailyGoal">—</strong></div>
+<div class="result"><span>Ganancia por venta después de anuncios</span><strong id="profitSale">—</strong></div>
+<div class="result primary"><span>Ventas por día que necesitás</span><strong id="salesDay">—</strong></div>
+<div class="result"><span>Inversión diaria en anuncios, aprox.</span><strong id="adDaily">—</strong></div>
+</div><p class="note">Si el costo de adquisición iguala o supera lo que te queda por venta, el cálculo te avisará que perdés dinero con esos valores.</p></div>
+</div>
+</section>
+<div class="footer-note">Tus datos se guardan automáticamente en este navegador para que puedas volver a abrir la herramienta en el mismo dispositivo. No se envían a ningún servidor. Si borrás los datos del navegador o cambiás de dispositivo, no se sincronizan.</div>
+</main></div>
+<footer>MÉTODO 7 DÍAS · HERRAMIENTA EDUCATIVA DE PLANIFICACIÓN FINANCIERA<br>No constituye asesoramiento contable, impositivo ni financiero. Verificá comisiones, impuestos y costos reales.</footer>
+<script>
+const ids=['price','winnerfy','mp','fixed','taxSale','conversion','dollar','days','warmDays','warmDaily','adTax','capUsd','cash','monthlyGoal','monthDays','acqCost'];
+const defaults={price:15000,winnerfy:4,mp:6,fixed:0,taxSale:0,conversion:2,dollar:1400,days:3,warmDays:3,warmDaily:3000,adTax:0,capUsd:100,cash:300000,monthlyGoal:1500000,monthDays:30,acqCost:9000};
+const $=id=>document.getElementById(id), n=id=>Math.max(0,Number($(id).value)||0);
+const ars=v=>Number.isFinite(v)?v.toLocaleString('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}):'—';
+const num=v=>Number.isFinite(v)?v.toLocaleString('es-AR',{maximumFractionDigits:1}):'—';
+function set(id,v){$(id).textContent=v}
+function update(){
+ const price=n('price'), fees=(n('winnerfy')+n('mp')+n('taxSale'))/100, fixed=n('fixed'), conv=n('conversion')/100, dollar=n('dollar');
+ const left=price*(1-fees)-fixed, mid=price/2, visit=left*conv, visits=conv>0?1/conv:Infinity, ticket=price*1.5, extra=ticket*(1-fees)-fixed, usd=dollar>0?left/dollar:NaN;
+ set('left',ars(left));set('mid',ars(mid));set('visitCost',ars(visit));set('visits',num(visits));set('ticket',ars(ticket));set('extraBreak',ars(extra));set('usd',dollar>0?usd.toLocaleString('es-AR',{style:'currency',currency:'USD',maximumFractionDigits:2}):'—');
+ $('bPrice').value=ars(price);$('goalLeft').value=ars(left);
+ const daily=price, test=price*n('days'), warm=n('warmDays')*n('warmDaily'), total=(test+warm)*(1+n('adTax')/100), cap=n('capUsd')*dollar, productCount=total>0?Math.floor(n('cash')/total):0;
+ set('dailyBudget',ars(daily));set('testCost',ars(test));set('warmCost',ars(warm));set('totalCost',ars(total));set('capPesos',ars(cap));set('countProducts',num(productCount));
+ const status=$('budgetStatus');
+ if(total<=cap){status.className='status';status.textContent='Dentro del tope estimado por producto.'}
+ else{status.className='status warn';status.textContent='Supera el tope estimado: revisá el precio, los días o los costos de calentamiento.'}
+ const goal=n('monthlyGoal'), days=n('monthDays'), acq=n('acqCost'), dailyGoal=days>0?goal/days:NaN, profit=left-acq;
+ set('dailyGoal',ars(dailyGoal));set('profitSale',ars(profit));
+ if(profit<=0){set('salesDay','Con ese costo por venta perdés plata');set('adDaily','—')}
+ else{const sales=Math.ceil(dailyGoal/profit);set('salesDay',num(sales));set('adDaily',ars(sales*acq))}
+}
+function save(){try{const o={};ids.forEach(id=>o[id]=$(id).value);localStorage.setItem('metodo7dias_calc',JSON.stringify(o))}catch(e){}}
+function load(){try{const o=JSON.parse(localStorage.getItem('metodo7dias_calc')||'{}');ids.forEach(id=>{if(o[id]!==undefined)$(id).value=o[id]})}catch(e){}}
+ids.forEach(id=>$(id).addEventListener('input',()=>{update();save()}));
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===b.dataset.tab))}));
+document.querySelectorAll('.reset').forEach(b=>b.addEventListener('click',()=>{const group=b.dataset.reset;const keys=group==='calc'?ids.slice(0,7):group==='budget'?ids.slice(7,13):ids.slice(13);keys.forEach(k=>$(k).value=defaults[k]);update();save()}));
+load();update();
+</script>
+</body></html>

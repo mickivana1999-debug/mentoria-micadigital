@@ -162,6 +162,7 @@ main{padding-block:32px 64px}
   <div class="wrap tabs" role="tablist">
     <button class="tab" role="tab" data-view="clases" aria-selected="true">Clases</button>
     <button class="tab" role="tab" data-view="recursos" aria-selected="false">Recursos</button>
+    <button class="tab" role="tab" data-view="bonos" aria-selected="false">Bonos</button>
     <button class="tab" role="tab" data-view="ayuda" aria-selected="false">Ayuda</button>
   </div>
 </nav>
@@ -203,6 +204,15 @@ main{padding-block:32px 64px}
       <p>Plantillas, planillas y links que usamos en las clases.</p>
     </div>
     <div class="grid" id="rec-grid"></div>
+  </section>
+
+  <section class="view" id="v-bonos" hidden>
+    <div class="sec-h">
+      <div class="eyebrow">De regalo</div>
+      <h1>Bonos</h1>
+      <p>Herramientas extra para que avances más rápido. Abrilas cuando las necesites.</p>
+    </div>
+    <div class="grid" id="bon-grid"></div>
   </section>
 
   <section class="view" id="v-ayuda" hidden>
@@ -281,6 +291,11 @@ var RECURSOS = [
   {tipo:'PDF · Módulo 4', t:'Tu tienda en Winnerfy', d:'Checklist de cuenta, producto, Mercado Pago, checkout y píxel, con los precios para validar.', link:'recursos/winnerfy.pdf'}
 ];
 
+var BONOS = [
+  {tipo:'Bono · Investigación', t:'Biblioteca de Nichos Digitales', d:'32 referencias de productos digitales que se venden, con buscador y filtros por nicho y país: qué validan y cómo modelarlas.', link:'recursos/bono-biblioteca-nichos.html'},
+  {tipo:'Bono · Herramienta', t:'Calculadora de ganancias', d:'Cuánto te queda de cada venta, cuánto separar para testear y cuántas ventas por día necesitás para tu meta del mes.', link:'recursos/bono-calculadora.html'}
+];
+
 /* ========================================================= */
 (function(){
   var $ = function(id){ return document.getElementById(id); };
@@ -353,6 +368,9 @@ var RECURSOS = [
     $('rec-grid').innerHTML = RECURSOS.length ? RECURSOS.map(function(r){
       return '<a class="card" href="' + esc(r.link) + '" target="_blank" rel="noopener"><span class="eyebrow">' + esc(r.tipo || 'Recurso') + '</span><b>' + esc(r.t) + '</b><span>' + esc(r.d || '') + '</span></a>';
     }).join('') : '<div class="vacio">Acá van a aparecer los recursos a medida que avancen las clases.</div>';
+    $('bon-grid').innerHTML = BONOS.length ? BONOS.map(function(r){
+      return '<a class="card" href="' + esc(r.link) + '" target="_blank" rel="noopener"><span class="eyebrow">' + esc(r.tipo || 'Bono') + '</span><b>' + esc(r.t) + '</b><span>' + esc(r.d || '') + '</span></a>';
+    }).join('') : '<div class="vacio">Pronto vas a tener acá tus bonos.</div>';
   }
 
   function ayuda(){
