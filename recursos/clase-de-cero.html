@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17102b">
+<title>De cero a tu primera oferta digital</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{
+ --bg:#100b1e;--bg2:#17102b;--panel:#211735;--panel2:#291d40;--ink:#f8f5ff;
+ --muted:#b7accd;--lav:#d9c9ff;--violet:#9a78f4;--plum:#6d45c6;--line:rgba(226,211,255,.14);
+ --mint:#8ce2cc;--blue:#9cc8ff;--gold:#f2ca83;--pink:#f3a8c9;
+ --radius:24px;--max:1160px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:radial-gradient(ellipse at 85% 0%,rgba(109,69,198,.18),transparent 38%),var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.55}
+button,input,textarea{font:inherit}button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--lav),var(--violet),var(--mint));z-index:1000}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(16,11,30,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.topinner{max-width:var(--max);margin:auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;font:800 12px Manrope;letter-spacing:.13em;text-transform:uppercase;color:#e9ddff}
+.brandmark{width:32px;height:32px;border-radius:11px;background:linear-gradient(140deg,#d9c9ff,#835fe2);display:grid;place-items:center;color:#211438;font-weight:900;box-shadow:0 0 25px #9a78f455}
+.topmeta{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:14px}
+.pill{border:1px solid var(--line);border-radius:100px;padding:6px 11px;color:#e7dcff}
+main{overflow:hidden}.wrap{max-width:var(--max);margin:auto;padding:0 24px}
+section{padding:108px 0;position:relative;border-bottom:1px solid rgba(226,211,255,.07)}
+section.compact{padding:82px 0}
+.eyebrow{display:flex;align-items:center;gap:10px;color:var(--lav);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px}
+.eyebrow:before{content:"";width:27px;height:1px;background:var(--violet)}
+h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Manrope,sans-serif;letter-spacing:-.045em}
+h1{font-size:clamp(48px,7.5vw,94px);line-height:.99;max-width:900px;margin-bottom:25px}
+h2{font-size:clamp(36px,5vw,62px);line-height:1.04;margin-bottom:18px}
+h3{font-size:21px;line-height:1.15;margin-bottom:9px}
+.lead{font-size:clamp(17px,2vw,21px);line-height:1.55;color:#d4cbe3;max-width:740px}
+.subtle{color:var(--muted)}.gradient{background:linear-gradient(100deg,#fff 5%,#d9c9ff 47%,#a78bfa 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{min-height:calc(100vh - 60px);display:flex;align-items:center;padding:80px 0 90px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:55px}
+.hero .lead{max-width:660px}
+.hero-art{min-height:460px;position:relative;display:grid;place-items:center}
+.orbit{position:absolute;width:370px;height:370px;border:1px solid rgba(217,201,255,.22);border-radius:50%;box-shadow:0 0 80px #8d68e31c,inset 0 0 70px #8d68e315}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid rgba(217,201,255,.17);border-radius:50%;inset:35px}
+.orbit:after{inset:75px}
+.core{position:relative;width:210px;height:245px;border-radius:32px;background:linear-gradient(145deg,#3c2b5b,#211735 65%);border:1px solid #cdb8ff66;box-shadow:0 25px 90px #0008,0 0 65px #9a78f433;transform:rotate(-7deg);padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+.core small{color:var(--lav);letter-spacing:.18em;font-weight:700;font-size:9px}
+.core strong{font:800 27px/1.04 Manrope;letter-spacing:-.06em}
+.core .line{height:5px;border-radius:10px;background:linear-gradient(90deg,var(--violet),var(--mint));width:75%}
+.float{position:absolute;padding:13px 17px;border:1px solid var(--line);background:#211735e8;backdrop-filter:blur(12px);border-radius:15px;box-shadow:0 14px 35px #0005;font-size:12px;color:#e9e0f8}
+.float b{display:block;font:800 13px Manrope;margin-bottom:2px}.f1{top:55px;right:0}.f2{bottom:70px;left:0}.f3{top:45%;left:-4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:100px;padding:13px 20px;background:linear-gradient(110deg,#d9c9ff,#9a78f4);color:#1b1230;font-weight:800;box-shadow:0 10px 30px #9a78f433;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 15px 36px #9a78f455}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);box-shadow:none}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.scrollhint{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-top:54px}
+.scrollhint span{width:28px;height:1px;background:var(--violet)}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:linear-gradient(145deg,rgba(44,31,67,.88),rgba(28,20,44,.92));border:1px solid var(--line);border-radius:var(--radius);padding:25px;position:relative;overflow:hidden}
+.card:after{content:"";position:absolute;width:150px;height:150px;right:-95px;top:-95px;border-radius:50%;background:rgba(154,120,244,.11);filter:blur(4px)}
+.card p{color:var(--muted);font-size:14px;margin-bottom:0}
+.icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;margin-bottom:20px;background:#9a78f422;color:var(--lav);font-size:19px}
+.tag{display:inline-block;border-radius:100px;padding:5px 10px;background:#9a78f41c;color:var(--lav);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.callout{padding:26px 30px;border-radius:20px;border:1px solid #a98cf055;background:linear-gradient(110deg,#6d45c626,#9a78f410);font:700 clamp(19px,2.4vw,27px)/1.3 Manrope;letter-spacing:-.03em}
+.callout strong{color:var(--lav)}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:40px}
+.sectionhead>p{max-width:360px;color:var(--muted);font-size:14px;margin:0}
+.format-card{min-height:180px}
+.format-card .number{font:800 11px Manrope;color:var(--violet);letter-spacing:.1em;margin-bottom:25px}
+.format-card h3{font-size:18px}
+.pillar{min-height:260px;cursor:pointer;transition:.25s}
+.pillar:hover,.pillar.active{transform:translateY(-5px);border-color:#b69cff88;box-shadow:0 18px 45px #0003}
+.pillar .big{font:800 44px Manrope;color:#b99cff;letter-spacing:-.08em;margin-bottom:18px}
+.pillar .detail{display:none;margin-top:15px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:#ded4ed}
+.pillar.active .detail{display:block}
+.togglebar{display:flex;gap:8px;background:#1b132b;padding:6px;border-radius:100px;width:max-content;margin-bottom:22px;border:1px solid var(--line)}
+.togglebar button{border:0;background:transparent;color:var(--muted);padding:10px 17px;border-radius:100px;font-size:12px;font-weight:700}
+.togglebar button.active{background:var(--lav);color:#201632}
+.comparebox{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.comparepanel{padding:30px;border-radius:22px;min-height:220px}
+.comparepanel.product{background:#252039;border:1px solid var(--line)}
+.comparepanel.offer{background:linear-gradient(145deg,#4a3473,#2b1e45);border:1px solid #b69cff55}
+.example{font:700 clamp(21px,3vw,31px)/1.25 Manrope;letter-spacing:-.04em;margin:18px 0}
+.mini{font-size:12px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;counter-reset:step}
+.step{border-top:1px solid #8e70d8;padding:18px 13px 0;position:relative}
+.step:before{counter-increment:step;content:"0" counter(step);display:block;font:800 24px Manrope;color:var(--violet);margin-bottom:20px}
+.step h3{font-size:16px}.step p{font-size:12px;color:var(--muted)}
+.valueeq{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.valueeq .factor{padding:22px;border-radius:18px;background:#211735;border:1px solid var(--line)}
+.factor .sign{font:800 26px Manrope;color:var(--mint);margin-bottom:8px}
+.factor h3{font-size:16px}.factor p{font-size:12px;color:var(--muted);margin:0}
+.fraction{max-width:760px;margin:0 auto 26px;text-align:center;padding:24px 15px}
+.fraction .top{font:800 clamp(17px,2.7vw,27px) Manrope;color:#e8dcff;padding-bottom:16px}
+.fraction .bar{height:2px;background:linear-gradient(90deg,transparent,var(--violet),transparent)}
+.fraction .bottom{font:700 clamp(15px,2vw,22px) Manrope;color:#c3b4dc;padding-top:16px}
+.anatomy{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.anatomy .card{padding:20px;min-height:185px}
+.anatomy .num{font:800 12px Manrope;color:var(--violet);margin-bottom:25px}
+.anatomy h3{font-size:16px}.anatomy p{font-size:12px}
+.builder{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px;align-items:start}
+.formpanel,.preview{background:#201630;border:1px solid var(--line);border-radius:22px;padding:25px}
+.field{margin-bottom:15px}.field label{display:block;font-size:11px;color:#d6c9eb;font-weight:700;margin-bottom:7px}
+.field input,.field textarea{width:100%;background:#130e20;border:1px solid var(--line);border-radius:12px;padding:12px 13px;color:var(--ink);outline:none}
+.field input:focus,.field textarea:focus{border-color:var(--violet)}
+.field textarea{resize:vertical;min-height:70px}
+.preview{position:sticky;top:95px;background:linear-gradient(145deg,#34234e,#211630)}
+.preview .label{font-size:10px;letter-spacing:.15em;color:var(--lav);font-weight:800}
+.preview h3{font-size:27px;line-height:1.15;margin:18px 0}
+.preview p{font-size:13px;color:#d4c8e6}
+.preview .previewfoot{border-top:1px solid var(--line);padding-top:14px;margin-top:22px;font-size:11px;color:var(--muted)}
+.model-list{display:grid;gap:10px}
+.model-item{display:grid;grid-template-columns:46px 1fr auto;gap:15px;align-items:center;padding:16px 18px;background:#201630;border:1px solid var(--line);border-radius:16px}
+.model-item .n{font:800 19px Manrope;color:var(--violet)}
+.model-item h3{font-size:15px;margin:0 0 3px}.model-item p{font-size:12px;color:var(--muted);margin:0}
+.model-item button{border:1px solid var(--line);border-radius:100px;background:transparent;color:var(--lav);font-size:11px;padding:7px 11px}
+.model-item .more{display:none;grid-column:2/4;color:#e0d6ef;font-size:12px;padding:4px 0 0}
+.model-item.open .more{display:block}
+.mistake{display:flex;gap:15px;padding:19px 0;border-bottom:1px solid var(--line)}
+.mistake .x{width:30px;height:30px;flex:none;border-radius:50%;display:grid;place-items:center;background:#f3a8c91c;color:var(--pink);font-weight:900}
+.mistake h3{font-size:16px;margin:0 0 4px}.mistake p{font-size:13px;color:var(--muted);margin:0}
+.checklist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.check{display:flex;gap:12px;align-items:flex-start;padding:15px;background:#211735;border:1px solid var(--line);border-radius:14px;cursor:pointer}
+.check input{accent-color:#a78bfa;width:17px;height:17px;margin-top:2px;flex:none}
+.check span{font-size:13px;color:#e6def1}.check:has(input:checked){border-color:#8ce2cc77;background:#8ce2cc0c}
+.checkprogress{height:7px;background:#302443;border-radius:20px;overflow:hidden;margin:20px 0 8px}
+.checkprogress div{height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--mint));transition:.3s}
+.footercta{text-align:center;padding:95px 0 110px}
+.footercta h2{max-width:800px;margin:0 auto 20px}
+.footercta p{max-width:650px;margin:0 auto;color:var(--muted)}
+.dock{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:50;display:grid;gap:9px}
+.dock a{width:8px;height:8px;border-radius:50%;background:#786a91;display:block;transition:.2s;position:relative}
+.dock a.active{background:var(--lav);box-shadow:0 0 0 5px #9a78f422}
+.dock a span{position:absolute;right:18px;top:-8px;background:#251a38;border:1px solid var(--line);border-radius:7px;padding:4px 8px;font-size:10px;white-space:nowrap;opacity:0;pointer-events:none}
+.dock a:hover span{opacity:1}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:none}
+.note{font-size:11px;color:var(--muted);margin-top:14px}
+@media(max-width:850px){
+ .hero-grid,.builder{grid-template-columns:1fr}.hero-art{min-height:350px}.orbit{width:290px;height:290px}
+ .grid3{grid-template-columns:1fr 1fr}.grid4,.anatomy{grid-template-columns:1fr 1fr}
+ .steps{grid-template-columns:1fr 1fr}.preview{position:relative;top:auto}.sectionhead{display:block}.sectionhead>p{margin-top:12px}
+ .dock{display:none}
+}
+@media(max-width:580px){
+ .wrap{padding:0 18px}.topinner{padding:10px 17px}.topmeta .pill{display:none}
+ section{padding:75px 0}.hero{padding:60px 0}.hero-grid{gap:5px}
+ .hero-art{min-height:320px}.core{width:175px;height:205px}.core strong{font-size:23px}
+ .float{font-size:10px;padding:10px 12px}.f1{right:-3px}.f2{left:-2px}
+ .grid2,.grid3,.grid4,.anatomy,.comparebox,.valueeq,.checklist{grid-template-columns:1fr}
+ .format-card{min-height:unset}.pillar{min-height:unset}.comparepanel{min-height:unset}
+ .steps{grid-template-columns:1fr 1fr}.step{padding-right:5px}
+ .model-item{grid-template-columns:35px 1fr}.model-item button{grid-column:2;justify-self:start}
+ .model-item .more{grid-column:2}
+ h1{font-size:48px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="topbar">
+ <div class="topinner">
+  <div class="brand"><span class="brandmark">↗</span> DIGITAL BUSINESS / MASTERCLASS</div>
+  <div class="topmeta"><span>GUÍA VISUAL</span><span class="pill">De cero a tu oferta</span></div>
+ </div>
+</header>
+<nav class="dock" aria-label="Navegación por secciones">
+ <a href="#inicio" class="active"><span>Inicio</span></a><a href="#que-es"><span>Infoproducto</span></a><a href="#modelo"><span>Modelo</span></a><a href="#pilares"><span>3 pilares</span></a><a href="#oferta"><span>Oferta</span></a><a href="#modelar"><span>Modelar</span></a><a href="#valor"><span>Valor</span></a><a href="#anatomia"><span>Anatomía</span></a><a href="#crear"><span>Crear desde cero</span></a><a href="#errores"><span>Errores</span></a><a href="#checklist"><span>Checklist</span></a>
+</nav>
+<main>
+<section class="hero" id="inicio">
+ <div class="wrap hero-grid">
+  <div class="reveal visible">
+   <div class="eyebrow">Una guía para empezar</div>
+   <h1>De cero a tu <span class="gradient">primera oferta digital.</span></h1>
+   <p class="lead">Qué es un infoproducto, cómo detectar una oportunidad y cómo construir una oferta que las personas realmente quieran comprar.</p>
+   <div class="actions"><a class="btn" href="#que-es">Empezar la clase <span>↓</span></a><a class="btn ghost" href="#crear">Ir al ejercicio práctico ↗</a></div>
+   <div class="scrollhint"><span></span> Deslizá para avanzar</div>
+  </div>
+  <div class="hero-art reveal visible" aria-hidden="true">
+   <div class="orbit"></div><div class="core"><small>IDEA → OFERTA</small><strong>CONOCIMIENTO<br>QUE GENERA<br><span class="gradient">VALOR.</span></strong><div class="line"></div><small>PRODUCTO DIGITAL / 001</small></div>
+   <div class="float f1"><b>01 / OFERTA</b>La transformación</div>
+   <div class="float f2"><b>02 / TRÁFICO</b>Las personas correctas</div>
+   <div class="float f3"><b>03 / CONVERSIÓN</b>La decisión de compra</div>
+  </div>
+ </div>
+</section>
+
+<section id="que-es">
+ <div class="wrap">
+  <div class="sectionhead reveal"><div><div class="eyebrow">01 · Concepto</div><h2>¿Qué es un <span class="gradient">infoproducto?</span></h2></div><p>Una forma de convertir conocimiento en una solución concreta, empaquetada y comercializable.</p></div>
+  <div class="callout reveal"><strong>Un infoproducto</strong> es un producto digital que organiza conocimiento, herramientas o un método para ayudar a una persona a conseguir una transformación específica que tiene demanda en el mercado.</div>
+  <div class="grid3" style="margin-top:22px">
+   <article class="card format-card reveal"><div class="number">FORMATO 01</div><div class="icon">▤</div><h3>Ebook / PDF</h3><p>Guías, manuales, mapas visuales, checklists y recursos descargables.</p></article>
+   <article class="card format-card reveal"><div class="number">FORMATO 02</div><div class="icon">▶</div><h3>Curso online</h3><p>Clases, módulos y ejercicios para aprender una habilidad o método.</p></article>
+   <article class="card format-card reveal"><div class="number">FORMATO 03</div><div class="icon">◉</div><h3>Membresía</h3><p>Acceso recurrente a contenido, recursos, actualizaciones o comunidad.</p></article>
+   <article class="card format-card reveal"><div class="number">FORMATO 04</div><div class="icon">✦</div><h3>Mentoría</h3><p>Acompañamiento para resolver un problema o avanzar con dirección.</p></article>
+   <article class="card format-card reveal"><div class="number">FORMATO 05</div><div class="icon">▦</div><h3>Plantillas</h3><p>Sistemas listos para usar: documentos, diseños, hojas de cálculo o flujos.</p></article>
+   <article class="card format-card reveal"><div class="number">FORMATO 06</div><div class="icon">⌘</div><h3>Aplicación</h3><p>Una herramienta digital que simplifica una tarea o proceso.</p></article>
+  </div>
+  <p class="note">El formato es el vehículo. El valor está en el problema que resolvés y en el resultado que ayudás a conseguir.</p>
+ </div>
+</section>
+
+<section class="compact" id="modelo">
+ <div class="wrap">
+  <div class="sectionhead reveal"><div><div class="eyebrow">02 · Modelo de negocio</div><h2>¿Por qué es una puerta de entrada?</h2></div><p>La ventaja principal es la estructura digital: el costo de entregar una venta adicional suele ser bajo.</p></div>
+  <div class="grid3">
+   <article class="card reveal"><div class="icon">↘</div><h3>Bajo costo marginal</h3><p>Una vez creado, entregar otra unidad normalmente no exige volver a fabricar el producto.</p></article>
+   <article class="card reveal"><div class="icon">％</div><h3>Márgenes potenciales</h3><p>No tenés inventario físico ni logística de fabricación. Sí existen costos de publicidad, plataformas, impuestos y soporte.</p></article>
+   <article class="card reveal"><div class="icon">∞</div><h3>Stock digital</h3><p>Podés vender sin quedarte sin unidades, siempre que puedas sostener la operación.</p></article>
+   <article class="card reveal"><div class="icon">◷</div><h3>Venta 24/7</h3><p>Una página y una entrega automatizada pueden recibir compras en cualquier momento.</p></article>
+   <article class="card reveal"><div class="icon">◎</div><h3>Alcance global</h3><p>Podés llegar a otros países si adaptás idioma, precio, moneda y medios de pago.</p></article>
+   <article class="card reveal"><div class="icon">↗</div><h3>Escalabilidad</h3><p>Podés aumentar el volumen sin que cada venta requiera repetir todo el trabajo manual.</p></article>
+  </div>
+  <p class="note">Digital no significa automático ni garantizado: la rentabilidad depende de la oferta, el costo de adquisición, la conversión y la operación.</p>
+ </div>
+</section>
+
+<section id="pilares">
+ <div class="wrap">
+  <div class="sectionhead reveal"><div><div class="eyebrow">03 · El sistema</div><h2>Los tres pilares del negocio.</h2></div><p>Tocá cada pilar para ver qué función cumple. Los tres tienen que trabajar juntos.</p></div>
+  <div class="grid3">
+   <article class="card pillar active reveal" tabindex="0"><div class="big">01</div><div class="tag">Primero</div><h3>OFERTA</h3><p>Qué prometés y cómo lo empaquetás.</p><div class="detail">Define el problema, la transformación, el mecanismo, los entregables, el precio y la reducción del riesgo.</div></article>
+   <article class="card pillar reveal" tabindex="0"><div class="big">02</div><div class="tag">Después</div><h3>TRÁFICO</h3><p>Cómo la persona correcta descubre tu oferta.</p><div class="detail">Contenido, recomendaciones y publicidad —por ejemplo Meta Ads— llevan visitantes cualificados a tu propuesta.</div></article>
+   <article class="card pillar reveal" tabindex="0"><div class="big">03</div><div class="tag">Finalmente</div><h3>CONVERSIÓN</h3><p>Cómo ayudás a que la persona decida comprar.</p><div class="detail">La página de venta, el mensaje, la prueba, la experiencia de checkout y la claridad de la oferta reducen fricción.</div></article>
+  </div>
+  <div class="callout reveal" style="margin-top:22px">Si la oferta es débil, <strong>ninguna estrategia de tráfico ni de copy la salva.</strong> Por eso el trabajo empieza acá.</div>
+ </div>
+</section>
+
+<section id="oferta">
+ <div class="wrap">
+  <div class="sectionhead reveal"><div><div class="eyebrow">04 · El cambio de enfoque</div><h2>Producto no es lo mismo que <span class="gradient">oferta.</span></h2></div><p>El producto cuenta qué entregás. La oferta explica por qué eso importa.</p></div>
+  <div class="togglebar reveal"><button class="active" data-view="product">Ver producto</button><button data-view="offer">Ver oferta</button></div>
+  <div class="comparebox reveal">
+   <div class="comparepanel product" id="productPanel"><span class="tag">Descripción</span><h3>Producto</h3><div class="example">“Curso de marketing digital”.</div><p class="mini">Describe el tema o el formato. La persona todavía no entiende qué cambia para ella.</p></div>
+   <div class="comparepanel offer" id="offerPanel"><span class="tag">Transformación</span><h3>Oferta</h3><div class="example">“Aprendé a crear y lanzar tu primer producto digital con un sistema paso a paso”.</div><p class="mini">Comunica a quién ayuda, qué resultado busca y cuál es el camino propuesto.</p></div>
+  </div>
+  <div class="callout reveal" style="margin-top:22px">Una oferta es una <strong>promesa de transformación específica</strong>, presentada de forma que el valor sea claro y la decisión de compra tenga sentido.</div>
+ </div>
+</section>
+
+<section id="modelar">
+ <div class="wrap">
+  <div class="sectionhead reveal"><div><div class="eyebrow">05 · Investigación</div><h2>Modelá lo que funciona.<br><span class="gradient">No copies.</span></h2></div><p>Antes de crear desde cero, investigá cómo comunica el mercado las soluciones que ya vende.</p></div>
+  <div class="model-list">
+   <div class="model-item reveal"><div class="n">01</div><div><h3>Elegí entre 5 y 10 referentes</h3><p>Productos digitales que resuelvan problemas parecidos o se dirijan a un público similar.</p></div><button>Analizar +</button><div class="more">Registrá marca, público, producto, promesa y precio. No te limites a competidores idénticos: mirá soluciones alternativas.</div></div>
+   <div class="model-item reveal"><div class="n">02</div><div><h3>Desarmá la oferta y la página</h3><p>Promesa, mecanismo, entregables, bonos, garantía, precio y estructura de venta.</p></div><button>Analizar +</button><div class="more">Preguntate qué problema ponen en primer plano, qué resultado venden y qué objeciones responden.</div></div>
+   <div class="model-item reveal"><div class="n">03</div><div><h3>Observá sus anuncios</h3><p>Hooks, ángulos, beneficios, formatos y mensajes que repiten.</p></div><button>Analizar +</button><div class="more">La cantidad de anuncios activos puede ser una señal para investigar, pero no demuestra por sí sola ventas ni rentabilidad.</div></div>
+   <div class="model-item reveal"><div class="n">04</div><div><h3>Anotá los patrones</h3><p>Qué promesas aparecen, qué dolores se repiten y cómo presentan el valor.</p></div><button>Analizar +</button><div class="more">Buscá patrones entre varios referentes. Una sola página no alcanza para concluir qué funciona en todo el mercado.</div></div>
+   <div class="model-item reveal"><div class="n">05</div><div><h3>Adaptá a tu público y a tu voz</h3><p>Usá IA para ordenar hallazgos y generar hipótesis, no para clonar propuestas.</p></div><button>Analizar +</button><div class="more">Podés vender en la misma categoría, pero necesitás una propuesta original: otro ángulo, método, experiencia, recursos y comunicación.</div></div>
+  </div>
+  <p class="note">Modelar es entender una estructura comercial. Copiar textos, diseños, materiales o testimonios ajenos no es modelar: puede generar problemas legales, reputacionales y de plataforma.</p>
+ </div>
+</section>
+
+<section id="valor">
+ <div class="wrap">
+  <div class="sectionhead reveal"><div><div class="eyebrow">06 · Percepción de valor</div><h2>La ecuación de valor.</h2></div><p>Una oferta se vuelve más atractiva cuando el resultado parece valioso y el camino parece alcanzable.</p></div>
+  <div class="card reveal" style="padding:35px 28px">
+   <div class="fraction"><div class="top">RESULTADO SOÑADO × PROBABILIDAD PERCIBIDA DE ÉXITO</div><div class="bar"></div><div class="bottom">TIEMPO HASTA EL RESULTADO × ESFUERZO Y SACRIFICIO</div></div>
+   <div class="valueeq">
+    <div class="factor"><div class="sign">↑</div><h3>Aumentá el resultado deseado</h3><p>Hacé concreta la transformación que la persona quiere conseguir.</p></div>
+    <div class="factor"><div class="sign">↑</div><h3>Aumentá la probabilidad percibida</h3><p>Sumá un método claro, ejemplos, pruebas reales y acompañamiento cuando corresponda.</p></div>
+    <div class="factor"><div class="sign">↓</div><h3>Reducí el tiempo</h3><p>Ordená el camino, priorizá y entregá recursos que aceleren la ejecución.</p></div>
+    <div class="factor"><div class="sign">↓</div><h3>Reducí el esfuerzo innecesario</h3><p>Quitá pasos confusos, decisiones repetidas y fricción evitable.</p></div>
+   </div>
+  </div>
+  <p class="note">No prometas resultados que no controlás. La ecuación sirve para diseñar valor percibido, no para garantizar éxito.</p>
+ </div>
+</section>
+
+<section id="anatomia">
+ <div class="wrap">
+  <div class="sectionhead reveal"><div><div class="eyebrow">07 · Diseño de la oferta</div><h2>Anatomía de una <span class="gradient">oferta sólida.</span></h2></div><p>Estas piezas responden las preguntas que una persona necesita resolver antes de comprar.</p></div>
+  <div class="anatomy">
+   <article class="card reveal"><div class="num">01 / PROBLEMA</div><h3>Dolor específico</h3><p>Un problema reconocible para un público concreto. No hace falta hablarle a todo el mundo.</p></article>
+   <article class="card reveal"><div class="num">02 / PROMESA</div><h3>Resultado claro</h3><p>Una transformación específica, concreta, creíble y relevante para ese público.</p></article>
+   <article class="card reveal"><div class="num">03 / MECANISMO</div><h3>Tu método</h3><p>La forma propia en la que ayudás a llegar al resultado y por qué tiene sentido.</p></article>
+   <article class="card reveal"><div class="num">04 / PRUEBA</div><h3>Credibilidad</h3><p>Testimonios auténticos, demostraciones, casos y evidencia con contexto.</p></article>
+   <article class="card reveal"><div class="num">05 / BONOS</div><h3>Valor adicional</h3><p>Recursos complementarios que facilitan la implementación. No agregues relleno.</p></article>
+   <article class="card reveal"><div class="num">06 / GARANTÍA</div><h3>Menos riesgo</h3><p>Condiciones transparentes y un proceso claro. La garantía debe ser real y cumplible.</p></article>
+   <article class="card reveal"><div class="num">07 / URGENCIA</div><h3>Motivo para actuar</h3><p>Fechas, cupos o beneficios con límites verdaderos. Nunca inventes escasez.</p></article>
+   <article class="card reveal"><div class="num">08 / PRECIO</div><h3>Valor y accesibilidad</h3><p>Un precio coherente con el valor, el mercado, el país y los medios de pago disponibles.</p></article>
+  </div>
+ </div>
+</section>
+
+<section id="crear">
+ <div class="wrap">
+  <div class="sectionhead reveal"><div><div class="eyebrow">08 · Taller práctico</div><h2>Construí tu oferta <span class="gradient">desde cero.</span></h2></div><p>Completá los campos. La vista previa se actualiza en tiempo real para ayudarte a ordenar tu primera hipótesis.</p></div>
+  <div class="steps reveal">
+   <div class="step"><h3>Nicho + avatar</h3><p>¿A quién ayudás?</p></div>
+   <div class="step"><h3>Dolor</h3><p>¿Qué problema tiene?</p></div>
+   <div class="step"><h3>Transformación</h3><p>¿Qué quiere lograr?</p></div>
+   <div class="step"><h3>Mecanismo</h3><p>¿Cómo lo ayudás?</p></div>
+   <div class="step"><h3>Paquete</h3><p>¿Qué recibe?</p></div>
+  </div>
+  <div class="builder reveal" style="margin-top:35px">
+   <div class="formpanel">
+    <div class="field"><label for="avatar">1. MI PÚBLICO</label><input id="avatar" placeholder="Ej. Profesionales que quieren vender online"></div>
+    <div class="field"><label for="pain">2. SU PROBLEMA PRINCIPAL</label><input id="pain" placeholder="Ej. No saben qué producto crear ni cómo validarlo"></div>
+    <div class="field"><label for="result">3. TRANSFORMACIÓN DESEADA</label><input id="result" placeholder="Ej. Lanzar una primera oferta validable"></div>
+    <div class="field"><label for="method">4. MI MÉTODO / MECANISMO</label><input id="method" placeholder="Ej. Un proceso de 5 etapas con plantillas"></div>
+    <div class="field"><label for="deliver">5. ¿QUÉ INCLUYE?</label><textarea id="deliver" placeholder="Ej. Curso, workbook, ejemplos y checklist"></textarea></div>
+    <button class="btn" type="button" id="reset">Limpiar campos ↺</button>
+   </div>
+   <div class="preview" aria-live="polite">
+    <div class="label">VISTA PREVIA · PRIMERA HIPÓTESIS</div>
+    <h3 id="previewTitle">Una oferta empieza por entender a quién ayudás.</h3>
+    <p id="previewBody">Completá los campos para convertir tu idea en una propuesta más clara. No hace falta que esté perfecta: después vas a validarla con el mercado.</p>
+    <div class="previewfoot" id="previewDeliver">Tu paquete y mecanismo aparecerán acá.</div>
+    <div class="note">Esta redacción es un borrador de trabajo, no una promesa lista para publicar. Revisá que sea específica, honesta y demostrable.</div>
+   </div>
+  </div>
+  <div class="callout reveal" style="margin-top:25px">El orden importa: <strong>primero oferta y validación; después profundizás el producto.</strong></div>
+ </div>
+</section>
+
+<section id="errores">
+ <div class="wrap">
+  <div class="sectionhead reveal"><div><div class="eyebrow">09 · Evitá estos desvíos</div><h2>Errores comunes al empezar.</h2></div><p>Muchos proyectos no fallan por falta de esfuerzo, sino por invertir ese esfuerzo en el orden equivocado.</p></div>
+  <div class="grid2">
+   <div>
+    <div class="mistake reveal"><div class="x">×</div><div><h3>Crear todo antes de validar</h3><p>Podés pasar semanas armando un ebook o curso sin saber si hay demanda o si la propuesta se entiende. Validá primero la oferta.</p></div></div>
+    <div class="mistake reveal"><div class="x">×</div><div><h3>Copiar una oferta ajena</h3><p>Además de no diferenciarte, copiar contenido o creatividades puede generar conflictos legales y con plataformas. Adaptá el aprendizaje.</p></div></div>
+    <div class="mistake reveal"><div class="x">×</div><div><h3>Prometer demasiado y sin precisión</h3><p>“Aprendé de todo” no define para quién es, qué problema resuelve ni qué resultado propone.</p></div></div>
+   </div>
+   <div>
+    <div class="mistake reveal"><div class="x">×</div><div><h3>Olvidar la reducción del riesgo</h3><p>Sin condiciones claras, prueba o información de soporte, la persona puede sentir que asume toda la incertidumbre.</p></div></div>
+    <div class="mistake reveal"><div class="x">×</div><div><h3>Elegir el precio desde el miedo</h3><p>Un precio muy alto sin valor que lo sostenga frena. Uno demasiado bajo puede generar desconfianza. Investigá disposición a pagar y costos.</p></div></div>
+    <div class="mistake reveal"><div class="x">×</div><div><h3>Sumar extras antes de tener lo esencial</h3><p>No necesitás lanzar con diez upsells. Primero conseguí una oferta principal clara y validá que exista demanda.</p></div></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="checklist">
+ <div class="wrap">
+  <div class="sectionhead reveal"><div><div class="eyebrow">10 · Cierre</div><h2>Checklist para salir de esta clase.</h2></div><p>Marcá cada punto cuando puedas hacerlo sin ayuda. El progreso se guarda mientras esta página siga abierta.</p></div>
+  <div class="checklist reveal" id="checks">
+   <label class="check"><input type="checkbox"><span>Entiendo qué es un infoproducto y sus formatos principales.</span></label>
+   <label class="check"><input type="checkbox"><span>Puedo explicar con mis palabras qué es una oferta.</span></label>
+   <label class="check"><input type="checkbox"><span>Entiendo los tres pilares: oferta, tráfico y conversión.</span></label>
+   <label class="check"><input type="checkbox"><span>Identifiqué entre 3 y 5 ofertas para modelar.</span></label>
+   <label class="check"><input type="checkbox"><span>Anoté patrones de promesa, mecanismo, bonos, precio y presentación.</span></label>
+   <label class="check"><input type="checkbox"><span>Completé una primera versión de mi oferta.</span></label>
+   <label class="check"><input type="checkbox"><span>Tengo una hipótesis de precio y un plan de validación.</span></label>
+  </div>
+  <div class="checkprogress"><div id="checkbar"></div></div>
+  <div class="subtle" style="font-size:12px" id="checktext">0 de 7 completados</div>
+ </div>
+</section>
+
+<section class="footercta">
+ <div class="wrap reveal">
+  <div class="eyebrow" style="justify-content:center">La idea que tenés que llevarte</div>
+  <h2>No empieces creando un producto enorme.<br><span class="gradient">Empezá construyendo algo que valga la pena comprar.</span></h2>
+  <p>Encontrá un problema real. Definí una transformación. Diseñá una oferta clara. Validala. Y recién entonces invertí más tiempo en construir y escalar.</p>
+  <div class="actions" style="justify-content:center"><a class="btn" href="#inicio">Volver al inicio ↑</a><button class="btn ghost" onclick="window.print()">Imprimir / Guardar PDF ↗</button></div>
+ </div>
+</section>
+</main>
+<script>
+const progress=document.getElementById('progress');
+function updateProgress(){const h=document.documentElement.scrollHeight-innerHeight;progress.style.width=(h>0?scrollY/h*100:0)+'%'}
+addEventListener('scroll',updateProgress);updateProgress();
+
+const sections=[...document.querySelectorAll('main section[id]')];
+const dots=[...document.querySelectorAll('.dock a')];
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+ if(e.isIntersecting){e.target.querySelectorAll('.reveal').forEach(x=>x.classList.add('visible'));
+ const idx=sections.indexOf(e.target);dots.forEach((d,i)=>d.classList.toggle('active',i===idx));}
+}),{threshold:.18});
+sections.forEach(s=>obs.observe(s));
+const revealObs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+document.querySelectorAll('.pillar').forEach(card=>{
+ const activate=()=>{document.querySelectorAll('.pillar').forEach(c=>c.classList.remove('active'));card.classList.add('active')};
+ card.addEventListener('click',activate);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate()}});
+});
+document.querySelectorAll('.togglebar button').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('.togglebar button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+ const offer=btn.dataset.view==='offer';
+ document.getElementById('productPanel').style.opacity=offer?'.55':'1';
+ document.getElementById('offerPanel').style.opacity=offer?'1':'.65';
+}));
+document.querySelectorAll('.model-item button').forEach(btn=>btn.addEventListener('click',()=>{
+ const item=btn.closest('.model-item');item.classList.toggle('open');btn.textContent=item.classList.contains('open')?'Cerrar −':'Analizar +';
+}));
+const fields=['avatar','pain','result','method','deliver'].map(id=>document.getElementById(id));
+function updatePreview(){
+ const [a,p,r,m,d]=fields.map(x=>x.value.trim());
+ const title=r?`Ayudá a ${a||'tu público'} a ${r}.`:'Una oferta empieza por entender a quién ayudás.';
+ const body=[a?`Público: ${a}.`:'',p?`Problema: ${p}.`:'',m?`Mecanismo: ${m}.`:''].filter(Boolean).join(' ');
+ document.getElementById('previewTitle').textContent=title;
+ document.getElementById('previewBody').textContent=body||'Completá los campos para convertir tu idea en una propuesta más clara. No hace falta que esté perfecta: después vas a validarla con el mercado.';
+ document.getElementById('previewDeliver').textContent=d?`Paquete inicial: ${d}`:'Tu paquete y mecanismo aparecerán acá.';
+}
+fields.forEach(f=>f.addEventListener('input',updatePreview));
+document.getElementById('reset').addEventListener('click',()=>{fields.forEach(f=>f.value='');updatePreview()});
+const checks=[...document.querySelectorAll('#checks input')];
+function updateChecks(){const n=checks.filter(c=>c.checked).length;document.getElementById('checkbar').style.width=(n/checks.length*100)+'%';document.getElementById('checktext').textContent=`${n} de ${checks.length} completados`;}
+checks.forEach(c=>c.addEventListener('change',updateChecks));updateChecks();
+</script>
+</body>
+</html>

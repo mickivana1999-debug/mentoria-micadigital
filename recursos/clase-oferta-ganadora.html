@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100b1c">
+<title>Criterios para elegir una oferta ganadora</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--bg:#100b1c;--panel:#191229;--panel2:#211735;--line:#382951;--text:#f5f0ff;--muted:#b9accd;--violet:#a78bfa;--lilac:#d8c5ff;--pink:#e9a8ed;--cyan:#7dd3fc;--green:#8ce0bd;--gold:#f5cc82;--danger:#ff9baf}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#30204c 0,transparent 34%),radial-gradient(ellipse at 90% 22%,#25133d 0,transparent 28%),var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.65}
+a{color:var(--lilac)}button{font:inherit}.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--violet),var(--pink));width:0;z-index:30}
+nav{position:sticky;top:0;z-index:20;background:#100b1cdd;backdrop-filter:blur(16px);border-bottom:1px solid #ffffff12;padding:12px max(5vw,18px);display:flex;justify-content:space-between;align-items:center;gap:14px}
+.brand{font-weight:800;letter-spacing:.12em;font-size:.76rem;color:var(--lilac)}.navlinks{display:flex;gap:15px;overflow:auto;white-space:nowrap}.navlinks a{text-decoration:none;color:var(--muted);font-size:.78rem}.navlinks a:hover{color:white}
+.wrap{max-width:1120px;margin:auto;padding:0 24px}.hero{padding:95px 0 70px;min-height:74vh;display:flex;align-items:center}.eyebrow{color:var(--cyan);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:800}.hero h1{font-family:Manrope,sans-serif;font-size:clamp(2.7rem,7vw,5.6rem);line-height:1.02;letter-spacing:-.055em;max-width:900px;margin:20px 0;background:linear-gradient(100deg,#fff 15%,#d7c4ff 55%,#e9a8ed);background-clip:text;-webkit-background-clip:text;color:transparent}.hero p{font-size:1.14rem;color:var(--muted);max-width:710px}.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.pill{border:1px solid var(--line);border-radius:99px;padding:7px 13px;color:var(--lilac);font-size:.78rem;background:#ffffff08}
+section{padding:70px 0;border-top:1px solid #ffffff10}.section-no{color:var(--cyan);font-size:.72rem;letter-spacing:.2em;font-weight:800}.section-title{font:800 clamp(1.9rem,4vw,3rem)/1.12 Manrope,sans-serif;letter-spacing:-.04em;margin:10px 0 15px}.lead{color:var(--muted);font-size:1.05rem;max-width:800px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:28px}.card{background:linear-gradient(145deg,#211832,#171123);border:1px solid var(--line);border-radius:20px;padding:22px}.card h3{margin:0 0 8px;font:700 1.05rem Manrope}.card p,.card li{color:var(--muted);font-size:.93rem}.card .icon{font-size:1.45rem;margin-bottom:12px}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:25px}
+.callout{padding:20px 23px;border-radius:16px;background:#a78bfa12;border:1px solid #a78bfa55;margin:25px 0;color:#e9ddff}.callout strong{color:white}.warning{background:#f5cc8210;border-color:#f5cc8255;color:#f8e4bd}.good{background:#8ce0bd10;border-color:#8ce0bd55;color:#d2f6e7}
+.steps{counter-reset:step;display:grid;gap:12px;margin-top:25px}.step{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start;background:#ffffff06;border:1px solid var(--line);border-radius:16px;padding:18px}.step:before{counter-increment:step;content:counter(step,decimal-leading-zero);font:800 1.1rem Manrope;color:var(--violet)}.step h3{margin:0 0 4px}.step p{margin:0;color:var(--muted)}
+.metric{font:800 2.5rem Manrope;color:var(--lilac);line-height:1.1}.metric-label{color:var(--muted);font-size:.84rem;margin-top:8px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;margin-top:20px}table{width:100%;border-collapse:collapse;min-width:600px}th,td{text-align:left;padding:14px 16px;border-bottom:1px solid #ffffff12}th{color:var(--lilac);background:#ffffff08;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}td{color:var(--muted);font-size:.9rem}tr:last-child td{border-bottom:0}
+.langtabs{display:flex;gap:8px;flex-wrap:wrap;margin:25px 0 16px}.tab{border:1px solid var(--line);background:#ffffff08;color:var(--muted);padding:9px 16px;border-radius:99px;cursor:pointer}.tab.active{background:var(--violet);border-color:var(--violet);color:#160d24;font-weight:800}.keyword-panel{display:none}.keyword-panel.active{display:block}.keyword-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.keyword-box{background:#ffffff06;border:1px solid var(--line);border-radius:16px;padding:18px}.keyword-box h3{font-size:1rem;color:var(--lilac);margin:0 0 12px}.keywords{display:flex;flex-wrap:wrap;gap:8px}.kw{font-size:.82rem;color:#e9e1f7;background:#ffffff0a;border:1px solid #ffffff16;border-radius:99px;padding:6px 10px;cursor:pointer}.kw:hover{border-color:var(--violet);background:#a78bfa22}.hint{font-size:.78rem;color:var(--muted);margin-top:12px}
+.copyall{border:1px solid var(--violet);color:var(--lilac);background:#a78bfa18;border-radius:10px;padding:10px 14px;cursor:pointer}.copyall:hover{background:#a78bfa30}
+.checklist{display:grid;gap:10px;margin-top:20px}.check{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:#ffffff06;border:1px solid var(--line);border-radius:13px;color:var(--muted)}.check input{accent-color:#a78bfa;width:18px;height:18px;margin-top:4px;flex:none}.score{font:800 1.4rem Manrope;color:var(--lilac);margin-top:14px}
+.footer{padding:45px 0 60px;color:var(--muted);font-size:.82rem;border-top:1px solid #ffffff10}.btn{display:inline-block;text-decoration:none;background:linear-gradient(100deg,#a78bfa,#e9a8ed);color:#160d24;font-weight:800;padding:13px 19px;border-radius:12px;margin-top:15px}.small{font-size:.82rem;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(18px);transition:.6s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:800px){.grid,.keyword-grid{grid-template-columns:1fr 1fr}.navlinks{display:none}.hero{min-height:auto;padding:75px 0 55px}}
+@media(max-width:560px){.wrap{padding:0 17px}.grid,.two,.keyword-grid{grid-template-columns:1fr}.card{padding:19px}.hero h1{font-size:2.8rem}section{padding:54px 0}}
+@media print{nav,.progress,.langtabs,.copyall,.btn{display:none!important}body{background:white;color:#111}.hero h1{color:#30204c;background:none}.card,.step,.keyword-box,.check{background:white;border:1px solid #ccc;break-inside:avoid}.card p,.card li,.lead,.step p,td,.small,.hint{color:#333}section{break-inside:avoid}.hero{min-height:0;padding:30px 0}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav><div class="brand">MÉTODO · INVESTIGACIÓN DE OFERTAS</div><div class="navlinks"><a href="#biblioteca">Biblioteca</a><a href="#validacion">Validación</a><a href="#mercados">Mercados</a><a href="#palabras">Palabras clave</a><a href="#nichos">Nichos</a><a href="#evaluar">Evaluar</a></div></nav>
+<header class="hero"><div class="wrap">
+<div class="eyebrow">Investigación · Análisis · Modelado</div>
+<h1>Criterios para elegir una oferta ganadora</h1>
+<p>Aprendé a detectar productos digitales que ya tienen señales de demanda, analizar cómo se venden y encontrar oportunidades para adaptar una oferta a tu mercado.</p>
+<div class="hero-meta"><span class="pill">Biblioteca de anuncios de Meta</span><span class="pill">Español · Português · English</span><span class="pill">Guía práctica de investigación</span></div>
+</div></header>
+
+<section id="biblioteca"><div class="wrap reveal">
+<div class="section-no">01 · EL PUNTO DE PARTIDA</div><h2 class="section-title">¿Qué es la Biblioteca de Anuncios?</h2>
+<p class="lead">Es una herramienta pública de Meta que permite consultar anuncios que se están mostrando en sus plataformas. La usamos como un radar de mercado: observamos qué ofertas se anuncian, qué mensajes utilizan y qué productos aparecen repetidamente.</p>
+<div class="two">
+<div class="card"><div class="icon">🔎</div><h3>Qué investigamos</h3><p>Productos, promesas, creatividades, formatos, páginas de venta, bonos, precios visibles y enfoques de comunicación.</p><a class="btn" href="https://www.facebook.com/ads/library/" target="_blank" rel="noopener">Abrir Biblioteca de Anuncios ↗</a></div>
+<div class="card"><div class="icon">🧭</div><h3>Cómo empezar</h3><p>Elegí “Todos los países” y “Todos los anuncios”. Probá palabras clave de formato y de nicho. Si buscás una frase exacta, escribila entre comillas.</p><p class="small">No te quedes con el primer resultado. La investigación requiere tiempo, variaciones y comparación.</p></div>
+</div>
+<div class="callout"><strong>La lógica:</strong> primero observamos qué ya se está vendiendo; después decidimos qué oportunidad tiene sentido trabajar. No elegimos una idea solamente porque nos gusta.</div>
+</div></section>
+
+<section id="identificar"><div class="wrap reveal">
+<div class="section-no">02 · FILTRAR RESULTADOS</div><h2 class="section-title">¿Cómo reconocer un producto digital?</h2>
+<p class="lead">Buscamos señales de que la entrega principal es un archivo, una formación o un recurso digital, y no un objeto físico o un servicio presencial.</p>
+<div class="grid">
+<div class="card"><div class="icon">📘</div><h3>Formatos habituales</h3><p>Ebook, guía PDF, recetario, plantillas, imprimibles, pack de archivos, curso, método paso a paso o biblioteca de recursos.</p></div>
+<div class="card"><div class="icon">⚡</div><h3>Palabras que lo delatan</h3><p>Descarga inmediata, acceso inmediato, acceso de por vida, material para imprimir, te llega al correo, bonos digitales.</p></div>
+<div class="card"><div class="icon">📦</div><h3>Señales de pack</h3><p>Pack +300, +1000 recursos, bonos exclusivos, regalos, biblioteca completa, archivos descargables.</p></div>
+</div>
+<div class="callout warning"><strong>Ojo:</strong> una palabra clave no confirma por sí sola que sea digital. Entrá al anuncio y a la página de venta. Verificá qué recibe el comprador, cómo se entrega y si hay envío físico.</div>
+</div></section>
+
+<section id="validacion"><div class="wrap reveal">
+<div class="section-no">03 · SEÑALES DE VALIDACIÓN</div><h2 class="section-title">¿Cómo detectar una oferta que merece investigación?</h2>
+<p class="lead">No buscamos un anuncio aislado. Buscamos consistencia: tiempo activo, volumen de anuncios y una oferta que tenga una página de venta real detrás.</p>
+<div class="grid">
+<div class="card"><div class="metric">+7 días</div><div class="metric-label">Antigüedad orientativa</div><p>Una campaña que sigue activa después de varios días merece ser investigada. Cuanto más tiempo permanece activa, más interesante es la señal.</p></div>
+<div class="card"><div class="metric">20–30+</div><div class="metric-label">Anuncios activos</div><p>Un anunciante con muchos anuncios activos puede estar probando y escalando diferentes creatividades. Preferimos 30 o más cuando aparecen.</p></div>
+<div class="card"><div class="metric">2+</div><div class="metric-label">Anuncios con recorrido</div><p>Como criterio práctico, buscá que al menos dos anuncios —o la mayoría— superen los siete días de actividad.</p></div>
+</div>
+<div class="callout warning"><strong>Importante: esto es una señal, no una prueba de rentabilidad.</strong> Que un anuncio lleve más de siete días activo no demuestra que esté generando ganancias. Puede estar en prueba, tener presupuesto bajo o perseguir otro objetivo. La Biblioteca no muestra ventas ni beneficios. Usá la antigüedad y el volumen para priorizar qué investigar, y validá el resto mirando la oferta, la página y la consistencia de los anuncios.</div>
+<div class="two">
+<div class="card"><h3>Herramienta complementaria: Funnelizer</h3><p>Podés mostrar cómo utilizás la extensión de Chrome Funnelizer para revisar información sobre la antigüedad de los anuncios, si la extensión la ofrece para ese anuncio. Contrastá siempre los datos con lo que muestra Meta.</p></div>
+<div class="card"><h3>¿Y si es un ebook?</h3><p>Si encontrás un libro digital y todos sus anuncios llevan menos de cinco días activos, no lo tomaría como referencia principal todavía. Guardalo para observarlo, pero priorizá ofertas con más recorrido y volumen.</p></div>
+</div>
+<div class="callout good"><strong>Referencia del recurso adjunto:</strong> el PDF propone filtrar anunciantes con 20 o más anuncios activos hoy y anuncios pautados hace 14 días o más. No exige que cada anuncio tenga 14 días, porque los anunciantes que escalan suelen rotar creatividades. Podés usar 7 días como filtro inicial y 14 días como señal más exigente.</div>
+</div></section>
+
+<section id="investigar"><div class="wrap reveal">
+<div class="section-no">04 · INVESTIGAR ANTES DE MODELAR</div><h2 class="section-title">No copies el anuncio. Desarmá la oferta.</h2>
+<div class="steps">
+<div class="step"><div><h3>Revisá el anunciante</h3><p>Contá cuántos anuncios tiene activos, cuánto tiempo llevan publicados y si hay varias versiones de la misma propuesta.</p></div></div>
+<div class="step"><div><h3>Entrá a la página de venta</h3><p>Identificá qué vende, a quién, qué transformación promete, qué incluye, cuánto cuesta y cómo se entrega.</p></div></div>
+<div class="step"><div><h3>Analizá la estructura comercial</h3><p>Observá la promesa, los beneficios, los bonos, las garantías, las objeciones que responde, el checkout y posibles upsells.</p></div></div>
+<div class="step"><div><h3>Buscá la oportunidad local</h3><p>Preguntate: ¿esto puede vender en Argentina? ¿Qué tendría que adaptar? ¿Qué puedo mejorar? ¿Hay demanda local y puedo diferenciarme?</p></div></div>
+<div class="step"><div><h3>Comprobá si compite en Argentina</h3><p>Buscá si el mismo anunciante aparece pautando en Argentina. Es un dato útil, pero no un filtro obligatorio: algunos vendedores usan páginas de Facebook distintas por país.</p></div></div>
+</div>
+<div class="callout"><strong>La meta es modelar, no copiar.</strong> Tomá como referencia una oferta que tenga señales de mercado y construí una versión propia: mejor adaptación cultural, claridad, contenido, presentación y experiencia de compra.</div>
+</div></section>
+
+<section id="mercados"><div class="wrap reveal">
+<div class="section-no">05 · INVESTIGACIÓN INTERNACIONAL</div><h2 class="section-title">Buscá afuera. Detectá antes. Adaptá acá.</h2>
+<p class="lead">Investigar otros mercados puede ayudarte a encontrar enfoques y ofertas que todavía no estén tan trabajados en Argentina. No significa que automáticamente vayan a funcionar: hay que comprobar demanda, poder adquisitivo, idioma y adaptación.</p>
+<div class="grid">
+<div class="card"><div class="icon">🇧🇷</div><h3>Brasil</h3><p>Un mercado prioritario para explorar. Probá búsquedas en portugués y observá formatos, promesas y packs digitales.</p></div>
+<div class="card"><div class="icon">🇺🇸</div><h3>Estados Unidos</h3><p>Buscá conceptos, subnichos y mecanismos de oferta que después puedas adaptar al público hispanohablante.</p></div>
+<div class="card"><div class="icon">🇪🇸</div><h3>España y Europa</h3><p>Explorá ofertas en español y otros idiomas. Compará qué necesidades resuelven y qué tan transferibles son.</p></div>
+</div>
+<p class="small">No te quedes con el primer hallazgo ni asumas que “no hay competencia” solo porque no encontraste anuncios en una búsqueda. Probá sinónimos, idiomas, países y diferentes palabras de formato.</p>
+</div></section>
+
+<section id="palabras"><div class="wrap reveal">
+<div class="section-no">06 · BANCO DE BÚSQUEDA</div><h2 class="section-title">Palabras clave para encontrar productos digitales</h2>
+<p class="lead">Usá primero una palabra de formato y después una de nicho. Por ejemplo: <strong>“guía PDF” + “dolor de espalda”</strong>. Esa combinación ayuda a encontrar recursos digitales concretos en lugar de productos físicos.</p>
+<div class="callout">Seleccioná un idioma y hacé clic en cualquier palabra para copiarla. Combiná términos: no uses siempre la misma búsqueda.</div>
+<div class="langtabs"><button class="tab active" data-tab="es">Español · LATAM y España</button><button class="tab" data-tab="pt">Portugués · Brasil</button><button class="tab" data-tab="en">Inglés · Estados Unidos</button></div>
+<div class="keyword-panel active" id="panel-es">
+<div class="keyword-grid">
+<div class="keyword-box"><h3>Formato</h3><div class="keywords">
+<span class="kw">Guía en PDF</span><span class="kw">Ebook</span><span class="kw">Descarga inmediata</span><span class="kw">Acceso inmediato</span><span class="kw">Pack +300</span><span class="kw">Pack +1000</span><span class="kw">Bonos de regalo</span><span class="kw">Regalos exclusivos</span><span class="kw">Plan de 21 días</span><span class="kw">Reto de 30 días</span><span class="kw">Recetario</span><span class="kw">Rutina diaria</span><span class="kw">Imprimible</span><span class="kw">Plantillas</span><span class="kw">Método paso a paso</span><span class="kw">Acceso de por vida</span><span class="kw">Te llega al correo</span>
+</div></div>
+<div class="keyword-box"><h3>Salud</h3><div class="keywords">
+<span class="kw">Moverse sin dolor</span><span class="kw">Adultos mayores</span><span class="kw">Ejercicios para mayores de 60</span><span class="kw">Glucosa</span><span class="kw">Insulina</span><span class="kw">Azúcar en sangre</span><span class="kw">Ejercicios en casa</span><span class="kw">Sin gimnasio</span><span class="kw">Dolor de espalda</span><span class="kw">Ciática</span><span class="kw">Rodillas</span><span class="kw">Recetas saludables</span><span class="kw">Sin azúcar</span><span class="kw">Dormir mejor</span><span class="kw">Insomnio</span><span class="kw">Desinflamar</span><span class="kw">Antiinflamatorio</span><span class="kw">Menopausia</span><span class="kw">Hormonas</span><span class="kw">Postura</span><span class="kw">Movilidad</span>
+</div></div>
+<div class="keyword-box"><h3>Hogar, hobbies y familia</h3><div class="keywords">
+<span class="kw">Recetas fáciles</span><span class="kw">Postres sin horno</span><span class="kw">Adiestramiento</span><span class="kw">Tu perro</span><span class="kw">Rabietas</span><span class="kw">Crianza respetuosa</span><span class="kw">Actividades para niños</span><span class="kw">Montessori</span><span class="kw">Manualidades paso a paso</span><span class="kw">Velas artesanales</span><span class="kw">Jabones artesanales</span><span class="kw">Huerta en casa</span><span class="kw">Plantas</span><span class="kw">Oraciones</span><span class="kw">Devocional</span><span class="kw">Organización del hogar</span><span class="kw">Limpieza</span><span class="kw">Archivos STL</span><span class="kw">Impresión 3D</span>
+</div></div></div></div>
+<div class="keyword-panel" id="panel-pt"><div class="keyword-grid">
+<div class="keyword-box"><h3>Formato</h3><div class="keywords">
+<span class="kw">Guia em PDF</span><span class="kw">E-book</span><span class="kw">Acesso imediato</span><span class="kw">Download imediato</span><span class="kw">Pack com +300</span><span class="kw">Pack com +1000</span><span class="kw">Bônus exclusivos</span><span class="kw">Brindes</span><span class="kw">Plano de 21 dias</span><span class="kw">Desafio de 30 dias</span><span class="kw">Receitas</span><span class="kw">Cardápio</span><span class="kw">Material para imprimir</span><span class="kw">Modelos</span><span class="kw">Passo a passo</span><span class="kw">Método</span><span class="kw">Acesso vitalício</span><span class="kw">Receba no seu e-mail</span>
+</div></div>
+<div class="keyword-box"><h3>Saúde</h3><div class="keywords">
+<span class="kw">Dor nas costas</span><span class="kw">Ciático</span><span class="kw">Joelho</span><span class="kw">Exercícios para idosos</span><span class="kw">Terceira idade</span><span class="kw">Glicose</span><span class="kw">Insulina</span><span class="kw">Açúcar no sangue</span><span class="kw">Treino em casa</span><span class="kw">Sem academia</span><span class="kw">Receitas saudáveis</span><span class="kw">Sem açúcar</span><span class="kw">Dormir melhor</span><span class="kw">Insônia</span><span class="kw">Desinflamar</span><span class="kw">Anti-inflamatório</span><span class="kw">Menopausa</span><span class="kw">Hormônios</span><span class="kw">Postura</span><span class="kw">Alongamento</span><span class="kw">Mobilidade</span><span class="kw">Sem dor</span>
+</div></div>
+<div class="keyword-box"><h3>Casa, hobbies e família</h3><div class="keywords">
+<span class="kw">Receitas fáceis</span><span class="kw">Doces caseiros</span><span class="kw">Adestramento de cães</span><span class="kw">Seu cachorro</span><span class="kw">Birras</span><span class="kw">Educação positiva</span><span class="kw">Atividades para crianças</span><span class="kw">Montessori</span><span class="kw">Artesanato passo a passo</span><span class="kw">Velas artesanais</span><span class="kw">Sabonetes artesanais</span><span class="kw">Horta em casa</span><span class="kw">Plantas</span><span class="kw">Orações</span><span class="kw">Espiritualidade</span><span class="kw">Organização da casa</span><span class="kw">Limpeza</span><span class="kw">Arquivos STL</span><span class="kw">Impressão 3D</span>
+</div></div></div></div>
+<div class="keyword-panel" id="panel-en"><div class="keyword-grid">
+<div class="keyword-box"><h3>Format</h3><div class="keywords">
+<span class="kw">PDF guide</span><span class="kw">eBook</span><span class="kw">Instant access</span><span class="kw">Instant download</span><span class="kw">300+ bundle</span><span class="kw">1,000+ bundle</span><span class="kw">Free bonuses</span><span class="kw">Exclusive bonus</span><span class="kw">21-day plan</span><span class="kw">30-day challenge</span><span class="kw">Recipes</span><span class="kw">Meal plan</span><span class="kw">Printable</span><span class="kw">Templates</span><span class="kw">Step-by-step</span><span class="kw">Method</span><span class="kw">Lifetime access</span><span class="kw">Sent straight to your inbox</span>
+</div></div>
+<div class="keyword-box"><h3>Health</h3><div class="keywords">
+<span class="kw">Move without pain</span><span class="kw">Seniors</span><span class="kw">Exercises for seniors</span><span class="kw">Over 60</span><span class="kw">Blood sugar</span><span class="kw">Insulin</span><span class="kw">Glucose</span><span class="kw">Home workout</span><span class="kw">No gym</span><span class="kw">Back pain</span><span class="kw">Sciatica</span><span class="kw">Knee pain</span><span class="kw">Healthy recipes</span><span class="kw">Sugar-free</span><span class="kw">Sleep better</span><span class="kw">Insomnia</span><span class="kw">Anti-inflammatory</span><span class="kw">Bloating</span><span class="kw">Menopause</span><span class="kw">Hormones</span><span class="kw">Posture</span><span class="kw">Chair exercises</span>
+</div></div>
+<div class="keyword-box"><h3>Home, hobbies & family</h3><div class="keywords">
+<span class="kw">Easy recipes</span><span class="kw">Air fryer recipes</span><span class="kw">Dog training</span><span class="kw">Your dog</span><span class="kw">Tantrums</span><span class="kw">Gentle parenting</span><span class="kw">Kids activities</span><span class="kw">Montessori</span><span class="kw">DIY</span><span class="kw">Crafts step by step</span><span class="kw">Candle making</span><span class="kw">Soap making</span><span class="kw">Gardening</span><span class="kw">Indoor plants</span><span class="kw">Bible study</span><span class="kw">Prayers</span><span class="kw">Devotional</span><span class="kw">Home organization</span><span class="kw">Cleaning hacks</span><span class="kw">STL files</span><span class="kw">3D printing</span>
+</div></div></div></div>
+<p class="hint">Las palabras clave anteriores se tomaron del recurso PDF adjunto (páginas 2, 3 y 4). Podés hacer clic en cada término para copiarlo y pegarlo en la Biblioteca.</p>
+</div></section>
+
+<section id="nichos"><div class="wrap reveal">
+<div class="section-no">07 · DÓNDE BUSCAR</div><h2 class="section-title">Nichos y mercados para explorar</h2>
+<p class="lead">No existe un ranking universal que garantice ventas. Estos son grandes territorios de demanda para investigar y encontrar problemas concretos que la gente ya busca resolver.</p>
+<div class="grid">
+<div class="card"><div class="icon">💰</div><h3>Dinero y desarrollo económico</h3><p>Finanzas personales, ahorro, organización del dinero, habilidades profesionales, emprendimientos, ventas, productividad e ingresos digitales.</p><p class="small">Pregunta de investigación: ¿qué resultado económico concreto promete la oferta y qué tan creíble es?</p></div>
+<div class="card"><div class="icon">❤️</div><h3>Salud y bienestar</h3><p>Movimiento, movilidad, alimentación, descanso, bienestar, salud para adultos mayores y rutinas en casa.</p><p class="small">Pregunta de investigación: ¿qué problema específico aborda y qué límites o respaldo necesita la promesa?</p></div>
+<div class="card"><div class="icon">🤝</div><h3>Relaciones y familia</h3><p>Crianza, educación positiva, vínculos, comunicación, organización familiar y desarrollo personal.</p><p class="small">Pregunta de investigación: ¿a quién ayuda y qué situación cotidiana busca mejorar?</p></div>
+<div class="card"><div class="icon">🏡</div><h3>Hogar y hobbies</h3><p>Recetas, manualidades, velas, jabones, jardinería, organización, limpieza y decoración.</p></div>
+<div class="card"><div class="icon">🐾</div><h3>Mascotas</h3><p>Adiestramiento, educación, cuidado y recursos prácticos para tutores de animales.</p></div>
+<div class="card"><div class="icon">🧒</div><h3>Educación y familia</h3><p>Actividades infantiles, Montessori, recursos imprimibles, aprendizaje y crianza.</p></div>
+</div>
+<div class="callout warning"><strong>Salud y dinero requieren especial cuidado:</strong> no modeles promesas engañosas, resultados garantizados ni afirmaciones médicas o financieras sin sustento. Una oferta puede tener muchos anuncios y aun así ser una mala referencia ética o comercial.</div>
+</div></section>
+
+<section id="evaluar"><div class="wrap reveal">
+<div class="section-no">08 · DECIDIR CON CRITERIO</div><h2 class="section-title">Checklist: ¿vale la pena modelar esta oferta?</h2>
+<p class="lead">Marcá los puntos que verificaste. No confundas una señal positiva con una validación completa.</p>
+<div class="checklist" id="checks">
+<label class="check"><input type="checkbox"> Confirmé que el producto es digital y entiendo qué recibe el comprador.</label>
+<label class="check"><input type="checkbox"> Encontré anuncios activos con más de siete días de recorrido.</label>
+<label class="check"><input type="checkbox"> El anunciante tiene al menos 20–30 anuncios activos; idealmente más de 30.</label>
+<label class="check"><input type="checkbox"> Al menos dos anuncios o la mayoría muestran antigüedad superior a siete días.</label>
+<label class="check"><input type="checkbox"> Revisé la página de venta, la promesa, el precio, los bonos y el checkout.</label>
+<label class="check"><input type="checkbox"> Entiendo qué problema resuelve y quién es el comprador.</label>
+<label class="check"><input type="checkbox"> Busqué la oferta en otros países e idiomas, no solo en Argentina.</label>
+<label class="check"><input type="checkbox"> Evalué cómo adaptarla y mejorarla sin copiarla.</label>
+<label class="check"><input type="checkbox"> Revisé si el anunciante también pauta en Argentina, sin usarlo como filtro excluyente.</label>
+<label class="check"><input type="checkbox"> Puedo explicar por qué creo que existe una oportunidad y qué tendría que validar.</label>
+</div>
+<div class="score" id="score">0 de 10 criterios revisados</div>
+<div class="callout good"><strong>Regla final:</strong> no elijas una oferta solo porque tiene muchos anuncios. Elegila cuando coincidan señales de actividad, una propuesta clara, un problema real y una oportunidad concreta de diferenciación en tu mercado.</div>
+<button class="copyall" onclick="window.print()">Imprimir / Guardar como PDF</button>
+</div></section>
+
+<footer class="footer"><div class="wrap"><strong>Criterios para elegir una oferta ganadora</strong><p>Material de formación para investigar, analizar y modelar ofertas digitales. Las métricas de anuncios son indicadores orientativos, no datos de ventas ni garantías de rentabilidad.</p><p>Banco de palabras clave: recurso PDF adjunto, páginas 2–4. Metodología de búsqueda y filtro: página 1.</p></div></footer>
+<script>
+const progress=document.getElementById('progress');
+window.addEventListener('scroll',()=>{const h=document.documentElement;progress.style.width=((h.scrollTop)/(h.scrollHeight-h.clientHeight))*100+'%'});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.keyword-panel').forEach(x=>x.classList.remove('active'));btn.classList.add('active');document.getElementById('panel-'+btn.dataset.tab).classList.add('active')}));
+document.querySelectorAll('.kw').forEach(el=>el.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(el.textContent);const old=el.textContent;el.textContent='¡Copiado!';setTimeout(()=>el.textContent=old,850)}catch(e){window.prompt('Copiá esta palabra clave:',el.textContent)}}));
+const checks=[...document.querySelectorAll('#checks input')];function updateScore(){const n=checks.filter(c=>c.checked).length;document.getElementById('score').textContent=n+' de 10 criterios revisados'}checks.forEach(c=>c.addEventListener('change',updateScore));
+</script>
+</body></html>
